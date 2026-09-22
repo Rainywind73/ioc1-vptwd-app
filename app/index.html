@@ -16,7 +16,8 @@ nav.row a.on{text-decoration:underline;font-weight:700}
 main{max-width:1100px;margin:20px auto;padding:0 16px 48px}
 .card{background:#fff;border-radius:12px;padding:16px;margin:12px 0;border:1px solid var(--line)}
 .muted{color:var(--muted);font-size:13px}
-button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;margin-right:6px}
+button.ghost{background:#fff;color:var(--navy);border:1px solid #cbd5e1}
 input{padding:8px;border:1px solid #ddd;border-radius:8px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
 .kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
@@ -25,19 +26,45 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
 .tag{display:inline-block;background:#fff3f3;color:var(--red);font-size:11px;padding:2px 6px;border-radius:4px}
 .stamp{font-size:11px;color:var(--muted)}
+.pill{display:inline-block;margin:4px 6px 0 0;padding:4px 8px;border:1px solid var(--line);border-radius:999px;font-size:12px}
 </style></head>
 <body>
 <div class="banner">BẢN NGHIÊN CỨU KIẾN TRÚC — DỮ LIỆU MẪU — không kết nối SSO / API ioc.dcs.vn</div>
 <div id="app"></div>
 <script>
 const NAV=[["#/","Trang chủ"],["#/socio-economic","Kinh tế - Xã hội"],["#/operation-management","Điều hành tác nghiệp"],["#/hundred-day-plan","Kế hoạch 100 ngày"],["#/monitoring-resolution","Theo dõi nghị quyết"],["#/party-building","Dữ liệu Đảng viên"],["#/nnmt","Dữ liệu NNMT"],["#/system-monitoring","Giám sát hệ thống"],["#/admin/user","Quản trị hệ thống"]];
-function chrome(t,b){const h=location.hash||"#/";return `<header class="top"><div class="t1">Văn phòng Trung ương Đảng</div><div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div><nav class="row">${NAV.map(([href,l])=>`<a class="${h===href?"on":""}" href="${href}">${l}</a>`).join("")}</nav></header><main><p class="stamp">S6 Đảng viên · 22/09/2026 · DỮ LIỆU MẪU</p><h1 style="font-size:20px">${t}</h1>${b}</main>`;}
+function chrome(t,b){const h=location.hash||"#/";return `<header class="top"><div class="t1">Văn phòng Trung ương Đảng</div><div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div><nav class="row">${NAV.map(([href,l])=>`<a class="${h===href?"on":""}" href="${href}">${l}</a>`).join("")}</nav></header><main><p class="stamp">S7+S8 · 22/09/2026 · DỮ LIỆU MẪU</p><h1 style="font-size:20px">${t}</h1>${b}</main>`;}
 function home(){return `<div class="grid"><div class="kpi"><span class="muted">GDP</span><b>+7,25%</b></div><div class="kpi"><span class="muted">Nhiệm vụ HT</span><b>64,1%</b></div><div class="kpi"><span class="muted">H100</span><b>48 NV</b></div><div class="kpi"><span class="muted">Đảng viên</span><b>4.862.000</b></div></div>`;}
 function sePage(){return `<div class="card"><h2>KT-XH <span class="tag">DỮ LIỆU MẪU</span></h2><div class="grid"><div class="kpi"><span class="muted">GDP</span><b>+7,25%</b></div><div class="kpi"><span class="muted">CPI</span><b>+4,10%</b></div></div></div>`;}
 function opsPage(){return `<div class="grid"><div class="kpi"><span class="muted">Nhiệm vụ HT</span><b>64,1%</b></div><div class="kpi"><span class="muted">Ký số</span><b>88,6%</b></div></div>`;}
 function hdpPage(){return `<div class="grid"><div class="kpi"><span class="muted">Tổng NV</span><b>48</b></div><div class="kpi"><span class="muted">Đã HT</span><b>6%</b></div></div>`;}
 function nqPage(){return `<div class="grid"><div class="kpi"><span class="muted">57-NQ/TW</span><b>1.840</b></div><div class="kpi"><span class="muted">NQ ĐH XIV</span><b>240</b></div></div>`;}
-function partyPage(){const age=[["Dưới 30",310],["30–40",1100],["40–50",1380],["50–60",760],["Trên 60",1310]];const ten=[["Dưới 5 năm",610],["5–10",740],["10–15",820],["15–20",680],["20–30",880],["Trên 30",1130]];return `<p class="muted">DỮ LIỆU ĐẢNG VIÊN — tổng hợp mẫu, không PII, không gọi sotaydangvien.</p><div class="grid"><div class="kpi"><span class="muted">Tổng số</span><b>4.862.000</b></div><div class="kpi"><span class="muted">Nam</span><b>59,4%</b></div><div class="kpi"><span class="muted">Nữ</span><b>40,6%</b></div><div class="kpi"><span class="muted">Miễn sinh hoạt</span><b>348.000</b></div></div><div class="card"><h2>Theo tuổi đời <span class="tag">DỮ LIỆU MẪU</span></h2><table><tr><th>Nhóm</th><th>Mẫu</th></tr>${age.map(([l,n])=>`<tr><td>${l}</td><td>${n}</td></tr>`).join("")}</table></div><div class="card"><h2>Theo tuổi đảng</h2><table><tr><th>Nhóm</th><th>Mẫu</th></tr>${ten.map(([l,n])=>`<tr><td>${l}</td><td>${n}</td></tr>`).join("")}</table></div><div class="card"><p class="muted">Sinh hoạt: 194.000 chi bộ · 218.000 buổi. Ý kiến 41.200. Không danh sách tên.</p></div>`;}
-function page(){const h=location.hash||"#/";const app=document.getElementById("app");if(!sessionStorage.getItem("ioc1")&&h!=="#/login"){location.hash="#/login";return;}if(h==="#/login"){app.innerHTML=`<main class="card"><h1>Đăng nhập hệ thống</h1><p class="muted">Không gửi Keycloak.</p><p><input id="u" value="demo.admin"/></p><button id="go">Đăng nhập</button></main>`;document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};return;}if(h==="#/linked/mae-info"){location.hash="#/nnmt";return;}const pages={"#/":["TỔNG QUAN ĐIỀU HÀNH",home()],"#/socio-economic":["BÁO CÁO TÌNH HÌNH KINH TẾ - XÃ HỘI",sePage()],"#/operation-management":["TỔNG QUAN ĐIỀU HÀNH TÁC NGHIỆP",opsPage()],"#/hundred-day-plan":["KẾ HOẠCH 100 NGÀY",hdpPage()],"#/monitoring-resolution":["TỔNG QUAN THỰC HIỆN NGHỊ QUYẾT",nqPage()],"#/party-building":["DỮ LIỆU ĐẢNG VIÊN",partyPage()],"#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>MAE-INFO chưa cấu hình URL</p><p><b>Hệ thống này chưa được cấu hình đúng.</b></p></div>"],"#/system-monitoring":["Giám sát hệ thống","<div class='card'>Stub → /Ship S8.</div>"],"#/admin/user":["Quản trị hệ thống","<div class='card'>Stub → /Ship S9.</div>"]};const [t,b]=pages[h]||["Không tìm thấy","<div class='card'>Hash ngoài phạm vi.</div>"];app.innerHTML=chrome(t,b);}
+function partyPage(){return `<div class="grid"><div class="kpi"><span class="muted">Tổng số</span><b>4.862.000</b></div><div class="kpi"><span class="muted">Nam</span><b>59,4%</b></div><div class="kpi"><span class="muted">Nữ</span><b>40,6%</b></div></div><p class="muted">Không PII, không gọi sotaydangvien.</p>`;}
+function nnmtPage(){
+  const cats=["Thông tin chung","Khí tượng Thủy văn","Môi trường","Đất đai","Tài nguyên nước","Bảo tồn thiên nhiên","Biến đổi khí hậu","Trồng trọt"];
+  const kpis=[["Đất tự nhiên","331.212 km²"],["GDP NLTS","11,8%"],["Sản lượng lúa","43,1 triệu tấn"],["Che phủ rừng","42,0%"]];
+  return `<div class="card"><p class="muted">Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p>
+    <p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p>
+    <p class="muted">Không iframe cổng Bộ. Nút Tải lại không gọi host ngoài.</p>
+    <button type="button" onclick="alert('Bản nghiên cứu — không gọi MAE-INFO official')">Tải lại</button>
+    <button class="ghost" type="button" onclick="document.getElementById('nnmt-cat').hidden=!document.getElementById('nnmt-cat').hidden">Xem catalog mẫu</button></div>
+    <div id="nnmt-cat" hidden>
+      <div class="card"><h2>Catalog mẫu <span class="tag">DỮ LIỆU MẪU</span></h2>
+        ${cats.map(c=>`<span class="pill">${c}</span>`).join("")}
+        <div class="grid" style="margin-top:12px">${kpis.map(([l,v])=>`<div class="kpi"><span class="muted">${l}</span><b>${v}</b></div>`).join("")}</div>
+        <p class="muted">VNLIS: chưa cấu hình. Không mở bản đồ production.</p></div></div>`;
+}
+function sysPage(){
+  return `<p class="muted">GIÁM SÁT ỨNG DỤNG / HẠ TẦNG — DỮ LIỆU MẪU. Host production không sao.</p>
+    <div class="card"><h2>Tab ứng dụng</h2>
+      <table><tr><th>Ứng dụng</th><th>Người dùng</th><th>Lượt</th><th>Online</th></tr>
+      <tr><td>Dữ liệu Đảng viên</td><td>3.875.000</td><td>2.140.000</td><td>7.200</td></tr>
+      <tr><td>Theo dõi nghị quyết</td><td>186.000</td><td>94.000</td><td>410</td></tr>
+      <tr><td>Điều hành tác nghiệp</td><td>214.000</td><td>121.000</td><td>860</td></tr></table></div>
+    <div class="card"><h2>Tab hạ tầng</h2>
+      <div class="grid"><div class="kpi"><span class="muted">CPU p95</span><b>17,2%</b></div><div class="kpi"><span class="muted">RAM p95</span><b>72,1%</b></div><div class="kpi"><span class="muted">Đĩa</span><b>38,4%</b></div><div class="kpi"><span class="muted">Latency</span><b>48 ms</b></div></div>
+      <p class="muted">node-mock-01 — không copy IP production.</p></div>`;
+}
+function page(){const h=location.hash||"#/";const app=document.getElementById("app");if(!sessionStorage.getItem("ioc1")&&h!=="#/login"){location.hash="#/login";return;}if(h==="#/login"){app.innerHTML=`<main class="card"><h1>Đăng nhập hệ thống</h1><p class="muted">Không gửi Keycloak.</p><p><input id="u" value="demo.admin"/></p><button id="go">Đăng nhập</button></main>`;document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};return;}if(h==="#/linked/mae-info"){location.hash="#/nnmt";return;}const pages={"#/":["TỔNG QUAN ĐIỀU HÀNH",home()],"#/socio-economic":["BÁO CÁO TÌNH HÌNH KINH TẾ - XÃ HỘI",sePage()],"#/operation-management":["TỔNG QUAN ĐIỀU HÀNH TÁC NGHIỆP",opsPage()],"#/hundred-day-plan":["KẾ HOẠCH 100 NGÀY",hdpPage()],"#/monitoring-resolution":["TỔNG QUAN THỰC HIỆN NGHỊ QUYẾT",nqPage()],"#/party-building":["DỮ LIỆU ĐẢNG VIÊN",partyPage()],"#/nnmt":["Thông tin Nông nghiệp và Môi trường",nnmtPage()],"#/system-monitoring":["GIÁM SÁT ỨNG DỤNG / HẠ TẦNG",sysPage()],"#/admin/user":["Quản trị hệ thống","<div class='card'>Stub → /Ship S9.</div>"]};const [t,b]=pages[h]||["Không tìm thấy","<div class='card'>Hash ngoài phạm vi.</div>"];app.innerHTML=chrome(t,b);}
 addEventListener("hashchange",page);if(!location.hash) location.hash="#/login";page();
 </script></body></html>
