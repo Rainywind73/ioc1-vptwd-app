@@ -7,17 +7,23 @@
 <style>
 :root{--red:#B9000E;--ink:#17204A;--muted:#64748b;--bg:#f4f5f8}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-.banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;padding:6px}
-header.top{background:var(--red);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+.banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;padding:6px;font-weight:700}
+header.top{background:var(--red);color:#fff;padding:10px 16px}
 .t1{font-size:12px;opacity:.9}.t2{font-weight:700}
-nav a{color:#fff;margin-right:10px;text-decoration:none;font-size:13px}
+nav{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
+nav a{color:#fff;text-decoration:none;font-size:13px;opacity:.95}
+nav a.on{text-decoration:underline;font-weight:700}
 main{max-width:1100px;margin:20px auto;padding:0 16px}
 .card{background:#fff;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 1px 3px #0001}
 .muted{color:var(--muted);font-size:13px}
 button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
 input{padding:8px;border:1px solid #ddd;border-radius:8px;width:260px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.kpi{background:#fff;border-radius:12px;padding:12px}.kpi b{display:block;font-size:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.kpi{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 3px #0001}
+.kpi b{display:block;font-size:22px;color:var(--red)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:6px 8px;border-bottom:1px solid #eee;text-align:left}
+.tag{display:inline-block;background:#fde8e8;color:#9b1c1c;font-size:11px;padding:2px 6px;border-radius:4px}
 </style>
 </head>
 <body>
@@ -34,9 +40,31 @@ const NAV=[
  ["#/nnmt","Dữ liệu NNMT"],
  ["#/system-monitoring","Giám sát hệ thống"],
 ];
+const HOME={
+  asOf:"17/09/2026",
+  kpis:[
+    ["GDP cả nước","+7,25%","so với cùng kỳ"],
+    ["CPI","+4,10%","DỮ LIỆU MẪU"],
+    ["IIP","+9,60%","DỮ LIỆU MẪU"],
+    ["Thu NSNN","1.412 nghìn tỷ","DỮ LIỆU MẪU"],
+    ["Chi NSNN","1.086 nghìn tỷ","DỮ LIỆU MẪU"],
+    ["Nhiệm vụ HT","64,1%","tác nghiệp mẫu"],
+    ["Kế hoạch 100 ngày","48 nhiệm vụ","không đọc H100"],
+    ["Đảng viên","4.862.000","không PII"],
+  ],
+  tw:[
+    ["Ban Kinh tế Trung ương","82%","đúng hạn"],
+    ["Ban Tổ chức Trung ương","71%","đúng hạn"],
+    ["Văn phòng Trung ương","64%","có chậm"],
+    ["Ban Tuyên giáo và Dân vận","69%","đúng hạn"],
+  ],
+  provinces:[["Hà Nội","6,8"],["TP. Hồ Chí Minh","6,5"],["Đà Nẵng","9,0"],["Huế","7,2"],["Hưng Yên","8,1"]],
+};
 function chrome(title,body){
-  return `<header class="top"><div><div class="t1">Văn phòng Trung ương Đảng</div><div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div></div>
-  <nav>${NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join("")}<a href="#/admin/user">Quản trị</a></nav></header>
+  const h=location.hash||"#/";
+  return `<header class="top"><div class="t1">Văn phòng Trung ương Đảng</div>
+  <div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div>
+  <nav>${NAV.map(([href,l])=>`<a class="${h===href?"on":""}" href="${href}">${l}</a>`).join("")}<a href="#/admin/user">Quản trị</a></nav></header>
   <main><h1>${title}</h1>${body}</main>`;
 }
 function page(){
@@ -51,14 +79,28 @@ function page(){
     document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};
     return;
   }
+  if(h==="#/"){
+    const kpis=HOME.kpis.map(([l,v,n])=>`<div class="kpi"><span class="muted">${l}</span><b>${v}</b><span class="tag">DỮ LIỆU MẪU</span> <span class="muted">${n}</span></div>`).join("");
+    const tw=HOME.tw.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
+    const pv=HOME.provinces.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}%</td></tr>`).join("");
+    app.innerHTML=chrome("TỔNG QUAN ĐIỀU HÀNH",`
+      <p class="muted">Cập nhật mẫu ${HOME.asOf} — không phải số liệu Gold / production.</p>
+      <div class="grid">${kpis}</div>
+      <div class="card"><h2>Đơn vị Trung ương (mẫu)</h2>
+        <table><thead><tr><th>Đơn vị</th><th>Hoàn thành</th><th>Trạng thái</th></tr></thead><tbody>${tw}</tbody></table></div>
+      <div class="card"><h2>Địa phương MVP (mẫu)</h2>
+        <table><thead><tr><th>Tỉnh/thành</th><th>GRDP mẫu</th></tr></thead><tbody>${pv}</tbody></table></div>
+      <div class="card"><h2>Nhận định</h2>
+        <p>Khối nhận định CMS — stub. Không kéo editor production.</p></div>`);
+    return;
+  }
   const pages={
-    "#/":["Tổng quan điều hành","<div class='grid'><div class='kpi'>GDP năm<b>+7,25%</b><span class='muted'>DỮ LIỆU MẪU</span></div><div class='kpi'>CPI<b>+4,10%</b></div><div class='kpi'>Nhiệm vụ HT<b>64,1%</b></div><div class='kpi'>Đảng viên<b>4.862.000</b></div></div>"],
     "#/socio-economic":["Kinh tế - Xã hội","<div class='card'>KPI KT-XH mẫu. Không phải số liệu Tổng cục Thống kê.</div>"],
     "#/operation-management":["Điều hành tác nghiệp","<div class='card'>Tỷ lệ hoàn thành 64,1% — DỮ LIỆU MẪU.</div>"],
     "#/hundred-day-plan":["Kế hoạch 100 ngày","<div class='card'>48 nhiệm vụ mẫu — không đọc H100 production.</div>"],
     "#/monitoring-resolution":["Theo dõi nghị quyết","<div class='card'>Thẻ NQ/TW mẫu (57, 59, 66…).</div>"],
     "#/party-building":["Dữ liệu Đảng viên","<div class='card'>Tổng số lượng đảng viên mẫu. Không PII.</div>"],
-    "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p><button onclick=\"alert('Bản nghiên cứu — không gọi MAE-INFO / IOC API')\">Tải lại</button> <button onclick=\"alert('Bản nghiên cứu — không mở cổng Bộ')\">Mở trong tab mới</button></div>"],
+    "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p></div>"],
     "#/system-monitoring":["Giám sát hệ thống","<div class='card'>Tab ứng dụng / hạ tầng — DỮ LIỆU MẪU.</div>"],
     "#/admin/user":["Quản trị hệ thống","<div class='card'>Stub admin. Không Keycloak.</div>"],
   };
