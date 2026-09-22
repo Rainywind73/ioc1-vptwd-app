@@ -3,27 +3,33 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#C0001A"/>
 <title>Trung tâm điều hành giám sát thông minh VPTWD</title>
 <style>
-:root{--red:#B9000E;--ink:#17204A;--muted:#64748b;--bg:#f4f5f8}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-.banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;padding:6px;font-weight:700}
-header.top{background:var(--red);color:#fff;padding:10px 16px}
-.t1{font-size:12px;opacity:.9}.t2{font-weight:700}
-nav{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px}
-nav a{color:#fff;text-decoration:none;font-size:13px;opacity:.95}
-nav a.on{text-decoration:underline;font-weight:700}
-main{max-width:1100px;margin:20px auto;padding:0 16px}
-.card{background:#fff;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 1px 3px #0001}
+:root{--red:#B9000E;--navy:#17204A;--muted:#64748b;--bg:#f4f5f8;--line:#E5E8EF}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--navy)}
+.banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;font-weight:700;padding:7px 10px}
+header.top{background:var(--red);color:#fff;padding:10px 16px 8px}
+.t1{font-size:11px;opacity:.92}
+.t2{font-weight:800;font-size:15px}
+nav.row{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:8px}
+nav.row a{color:#fff;text-decoration:none;font-size:13px;opacity:.95;border-bottom:2px solid transparent;padding-bottom:2px}
+nav.row a.on{border-bottom-color:#fff;font-weight:700}
+main{max-width:1100px;margin:20px auto;padding:0 16px 48px}
+.card{background:#fff;border-radius:12px;padding:16px;margin:12px 0;border:1px solid var(--line)}
 .muted{color:var(--muted);font-size:13px}
-button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
-input{padding:8px;border:1px solid #ddd;border-radius:8px;width:260px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
-.kpi{background:#fff;border-radius:12px;padding:12px;box-shadow:0 1px 3px #0001}
-.kpi b{display:block;font-size:22px;color:var(--red)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:6px 8px;border-bottom:1px solid #eee;text-align:left}
-.tag{display:inline-block;background:#fde8e8;color:#9b1c1c;font-size:11px;padding:2px 6px;border-radius:4px}
+button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;margin-right:6px}
+button.ghost{background:#fff;color:var(--navy);border:1px solid #cbd5e1}
+input{padding:8px;border:1px solid #ddd;border-radius:8px;width:min(320px,100%)}
+.login{max-width:420px;margin:8vh auto}
+.stamp{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:22px;margin:4px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.tag{display:inline-block;background:#fff3f3;color:var(--red);font-size:11px;padding:2px 6px;border-radius:4px}
 </style>
 </head>
 <body>
@@ -39,72 +45,68 @@ const NAV=[
  ["#/party-building","Dữ liệu Đảng viên"],
  ["#/nnmt","Dữ liệu NNMT"],
  ["#/system-monitoring","Giám sát hệ thống"],
+ ["#/admin/user","Quản trị hệ thống"]
 ];
-const HOME={
-  asOf:"17/09/2026",
-  kpis:[
-    ["GDP cả nước","+7,25%","so với cùng kỳ"],
-    ["CPI","+4,10%","DỮ LIỆU MẪU"],
-    ["IIP","+9,60%","DỮ LIỆU MẪU"],
-    ["Thu NSNN","1.412 nghìn tỷ","DỮ LIỆU MẪU"],
-    ["Chi NSNN","1.086 nghìn tỷ","DỮ LIỆU MẪU"],
-    ["Nhiệm vụ HT","64,1%","tác nghiệp mẫu"],
-    ["Kế hoạch 100 ngày","48 nhiệm vụ","không đọc H100"],
-    ["Đảng viên","4.862.000","không PII"],
-  ],
-  tw:[
-    ["Ban Kinh tế Trung ương","82%","đúng hạn"],
-    ["Ban Tổ chức Trung ương","71%","đúng hạn"],
-    ["Văn phòng Trung ương","64%","có chậm"],
-    ["Ban Tuyên giáo và Dân vận","69%","đúng hạn"],
-  ],
-  provinces:[["Hà Nội","6,8"],["TP. Hồ Chí Minh","6,5"],["Đà Nẵng","9,0"],["Huế","7,2"],["Hưng Yên","8,1"]],
-};
 function chrome(title,body){
   const h=location.hash||"#/";
   return `<header class="top"><div class="t1">Văn phòng Trung ương Đảng</div>
-  <div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div>
-  <nav>${NAV.map(([href,l])=>`<a class="${h===href?"on":""}" href="${href}">${l}</a>`).join("")}<a href="#/admin/user">Quản trị</a></nav></header>
-  <main><h1>${title}</h1>${body}</main>`;
+    <div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div>
+    <nav class="row">${NAV.map(([href,l])=>`<a class="${h===href?"on":""}" href="${href}">${l}</a>`).join("")}</nav>
+    </header><main><p class="stamp">S1 home · Dữ liệu tính đến 22/09/2026 · DỮ LIỆU MẪU</p>
+    <h1 style="font-size:20px">${title}</h1>${body}</main>`;
+}
+function home(){
+  return `<div class="grid">
+    <div class="kpi"><span class="muted">GDP năm</span><b>+7,25%</b><span class="muted">so với cùng kỳ · DỮ LIỆU MẪU</span></div>
+    <div class="kpi"><span class="muted">CPI</span><b>+4,10%</b><span class="muted">DỮ LIỆU MẪU</span></div>
+    <div class="kpi"><span class="muted">Thu NSNN</span><b>1.412,0</b><span class="muted">nghìn tỷ đồng</span></div>
+    <div class="kpi"><span class="muted">Chi NSNN</span><b>1.086,0</b><span class="muted">nghìn tỷ đồng</span></div>
+    <div class="kpi"><span class="muted">Nhiệm vụ HT</span><b>64,1%</b><span class="muted">tác nghiệp mẫu</span></div>
+    <div class="kpi"><span class="muted">Đảng viên</span><b>4.862.000</b><span class="muted">không PII</span></div>
+  </div>
+  <section class="card">
+    <h2 style="font-size:16px;margin:0 0 8px">Đơn vị Trung ương <span class="tag">DỮ LIỆU MẪU</span></h2>
+    <table><thead><tr><th>Đơn vị</th><th>Tỷ lệ HT</th><th>Xu hướng</th></tr></thead><tbody>
+      <tr><td>Ban Chỉ đạo Quốc hội</td><td>34,2%</td><td>+6,1</td></tr>
+      <tr><td>Ban Chỉ đạo CĐS các cơ quan Đảng</td><td>18,5%</td><td>0</td></tr>
+      <tr><td>Ban Chỉ đạo Chính phủ</td><td>9,2%</td><td>+1,4</td></tr>
+      <tr><td>Ban Chỉ đạo TW về PCTN</td><td>0%</td><td>0</td></tr>
+      <tr><td>Ủy ban TW MTTQ Việt Nam</td><td>0%</td><td>0</td></tr>
+    </tbody></table>
+  </section>
+  <section class="card">
+    <h2 style="font-size:16px;margin:0 0 8px">Nhận định</h2>
+    <p class="muted">CMS nhận định — stub S1. Không đọc /api-ioc. Bản nghiên cứu kiến trúc.</p>
+  </section>`;
 }
 function page(){
   const h=location.hash||"#/";
   const app=document.getElementById("app");
   if(!sessionStorage.getItem("ioc1") && h!=="#/login"){location.hash="#/login";return;}
   if(h==="#/login"){
-    app.innerHTML=`<main class="card"><h1>Đăng nhập demo</h1>
-      <p class="muted">Bản nghiên cứu — không gửi mật khẩu tới Keycloak.</p>
-      <p><input id="u" placeholder="demo.admin"/></p>
-      <button id="go">Đăng nhập</button></main>`;
-    document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};
+    app.innerHTML=`<main class="card login"><h1>Đăng nhập hệ thống</h1>
+      <p class="muted">Bản nghiên cứu — không gửi mật khẩu tới Keycloak / sso-ioc.dcs.vn.</p>
+      <p><input id="u" placeholder="demo.admin" value="demo.admin"/></p>
+      <button id="go">Đăng nhập</button>
+      <button class="ghost" id="sso" type="button">Đăng nhập SSO (demo)</button></main>`;
+    const enter=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};
+    document.getElementById("go").onclick=enter;
+    document.getElementById("sso").onclick=enter;
     return;
   }
-  if(h==="#/"){
-    const kpis=HOME.kpis.map(([l,v,n])=>`<div class="kpi"><span class="muted">${l}</span><b>${v}</b><span class="tag">DỮ LIỆU MẪU</span> <span class="muted">${n}</span></div>`).join("");
-    const tw=HOME.tw.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("");
-    const pv=HOME.provinces.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}%</td></tr>`).join("");
-    app.innerHTML=chrome("TỔNG QUAN ĐIỀU HÀNH",`
-      <p class="muted">Cập nhật mẫu ${HOME.asOf} — không phải số liệu Gold / production.</p>
-      <div class="grid">${kpis}</div>
-      <div class="card"><h2>Đơn vị Trung ương (mẫu)</h2>
-        <table><thead><tr><th>Đơn vị</th><th>Hoàn thành</th><th>Trạng thái</th></tr></thead><tbody>${tw}</tbody></table></div>
-      <div class="card"><h2>Địa phương MVP (mẫu)</h2>
-        <table><thead><tr><th>Tỉnh/thành</th><th>GRDP mẫu</th></tr></thead><tbody>${pv}</tbody></table></div>
-      <div class="card"><h2>Nhận định</h2>
-        <p>Khối nhận định CMS — stub. Không kéo editor production.</p></div>`);
-    return;
-  }
+  if(h==="#/linked/mae-info"){location.hash="#/nnmt";return;}
   const pages={
-    "#/socio-economic":["Kinh tế - Xã hội","<div class='card'>KPI KT-XH mẫu. Không phải số liệu Tổng cục Thống kê.</div>"],
-    "#/operation-management":["Điều hành tác nghiệp","<div class='card'>Tỷ lệ hoàn thành 64,1% — DỮ LIỆU MẪU.</div>"],
-    "#/hundred-day-plan":["Kế hoạch 100 ngày","<div class='card'>48 nhiệm vụ mẫu — không đọc H100 production.</div>"],
-    "#/monitoring-resolution":["Theo dõi nghị quyết","<div class='card'>Thẻ NQ/TW mẫu (57, 59, 66…).</div>"],
-    "#/party-building":["Dữ liệu Đảng viên","<div class='card'>Tổng số lượng đảng viên mẫu. Không PII.</div>"],
+    "#/":["TỔNG QUAN ĐIỀU HÀNH", home()],
+    "#/socio-economic":["Kinh tế - Xã hội","<div class='card'>Stub. Chi tiết → /Ship S2.</div>"],
+    "#/operation-management":["Điều hành tác nghiệp","<div class='card'>Stub. Chi tiết → /Ship S3.</div>"],
+    "#/hundred-day-plan":["Kế hoạch 100 ngày","<div class='card'>Stub. Chi tiết → /Ship S4.</div>"],
+    "#/monitoring-resolution":["Theo dõi nghị quyết","<div class='card'>Stub. Chi tiết → /Ship S5.</div>"],
+    "#/party-building":["Dữ liệu Đảng viên","<div class='card'>Stub. Không PII. → /Ship S6.</div>"],
     "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p></div>"],
-    "#/system-monitoring":["Giám sát hệ thống","<div class='card'>Tab ứng dụng / hạ tầng — DỮ LIỆU MẪU.</div>"],
-    "#/admin/user":["Quản trị hệ thống","<div class='card'>Stub admin. Không Keycloak.</div>"],
+    "#/system-monitoring":["Giám sát hệ thống","<div class='card'>Stub. → /Ship S8.</div>"],
+    "#/admin/user":["Quản trị hệ thống","<div class='card'>Stub. Không Keycloak. → /Ship S9.</div>"]
   };
-  const [t,b]=pages[h]||["Không tìm thấy","<p>Hash không khớp.</p>"];
+  const [t,b]=pages[h]||["Không tìm thấy","<div class='card'>Hash ngoài phạm vi S1.</div>"];
   app.innerHTML=chrome(t,b);
 }
 addEventListener("hashchange",page);
