@@ -2,7 +2,7 @@
 <html lang="vi"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Trung tâm điều hành giám sát thông minh VPTWD</title>
 <style>
-:root{--red:#B9000E;--navy:#17204A;--muted:#64748b;--bg:#f4f5f8;--line:#E5E8EF}
+:root{--red:#B9000E;--navy:#17204A;--muted:#64748b;--bg:#f4f5f8;--line:#E5E8EF;--mae:#1B5E3B}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--navy)}
 .banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;font-weight:700;padding:7px}
 header.top{background:var(--red);color:#fff;padding:8px 12px 10px}
@@ -14,49 +14,52 @@ nav.row a.on,nav.row button.navbtn.on{background:#8e0a12;font-weight:700}
 .drop.open .menu{display:block}.menu a{display:block;color:var(--navy);padding:8px 10px;text-decoration:none}
 main{max-width:1100px;margin:20px auto;padding:0 16px 48px}
 .card{background:#fff;border-radius:12px;padding:14px;margin:10px 0;border:1px solid var(--line)}
-.muted{color:var(--muted);font-size:13px}button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+.muted{color:var(--muted);font-size:13px}button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;margin-right:6px}
+button.ghost{background:#fff;color:var(--navy);border:1px solid #cbd5e1}
 .grid{display:grid;gap:10px}.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}.kpi b{display:block;font-size:20px;margin:2px 0}
 .up{color:#16a34a}.warn{color:#dc2626}.stamp{font-size:11px;color:var(--muted)}
 .tag{background:#fff3f3;color:var(--red);font-size:11px;padding:2px 6px;border-radius:4px}
+.mae{background:var(--mae);color:#fff;padding:10px 14px;border-radius:8px;font-weight:700}
+.pill{display:block;margin:6px 0;padding:8px 10px;border-radius:8px;background:#1e3a5f;color:#fff;font-size:13px;text-decoration:none}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left}
 </style></head><body>
 <div class="banner">BẢN NGHIÊN CỨU KIẾN TRÚC — DỮ LIỆU MẪU — không kết nối SSO / API ioc.dcs.vn</div>
 <div id="app"></div>
 <script>
 function isOn(h,keys){return keys.some(k=>h===k||h.startsWith(k+"/"))}
-function chrome(t,b){const h=location.hash||"#/";return `<header class="top"><div class="t1">VĂN PHÒNG TRUNG ƯƠNG ĐẢNG</div><div class="t2">TRUNG TÂM GIÁM SÁT, ĐIỀU HÀNH THÔNG MINH</div><nav class="row"><a class="${h==='#/'?'on':''}" href="#/">Trang chủ</a><a class="${h==='#/socio-economic'?'on':''}" href="#/socio-economic">Kinh tế - Xã hội</a><a class="${h==='#/operation-management'?'on':''}" href="#/operation-management">Điều hành tác nghiệp</a><div class="drop"><button class="navbtn ${isOn(h,['#/hundred-day-plan'])?'on':''}" type="button" data-dd="h100">Kế hoạch 100 ngày ▾</button><div class="menu"><a href="#/hundred-day-plan/political">Hệ thống chính trị</a><a href="#/hundred-day-plan/party">Cơ quan Đảng</a></div></div><a class="${h==='#/monitoring-resolution'?'on':''}" href="#/monitoring-resolution">Theo dõi nghị quyết</a><a class="${h==='#/party-building'?'on':''}" href="#/party-building">Dữ liệu Đảng viên</a><div class="drop"><button class="navbtn ${isOn(h,['#/linked-systems','#/nnmt'])?'on':''}" type="button" data-dd="nnmt">Dữ liệu về NNMT ▾</button><div class="menu"><a href="#/linked-systems/mae-info">MAE-INFO</a><a href="#/linked-systems/vnlis">CSDL đất đai</a></div></div><a class="${h==='#/system-monitoring'?'on':''}" href="#/system-monitoring">Giám sát hệ thống</a><div class="drop"><button class="navbtn ${h.startsWith('#/admin')?'on':''}" type="button" data-dd="adm">Quản trị ▾</button><div class="menu"><a href="#/admin/user">Người dùng</a></div></div></nav></header><main><p class="stamp">S6c Đảng viên · DỮ LIỆU MẪU · không PII</p><h1 style="font-size:20px">${t}</h1>${b}</main>`}
+function chrome(t,b){const h=location.hash||"#/";return `<header class="top"><div class="t1">VĂN PHÒNG TRUNG ƯƠNG ĐẢNG</div><div class="t2">TRUNG TÂM GIÁM SÁT, ĐIỀU HÀNH THÔNG MINH</div><nav class="row"><a class="${h==='#/'?'on':''}" href="#/">Trang chủ</a><a class="${h==='#/socio-economic'?'on':''}" href="#/socio-economic">Kinh tế - Xã hội</a><a class="${h==='#/operation-management'?'on':''}" href="#/operation-management">Điều hành tác nghiệp</a><div class="drop"><button class="navbtn ${isOn(h,['#/hundred-day-plan'])?'on':''}" type="button" data-dd="h100">Kế hoạch 100 ngày ▾</button><div class="menu"><a href="#/hundred-day-plan/political">Hệ thống chính trị</a><a href="#/hundred-day-plan/party">Cơ quan Đảng</a></div></div><a class="${h==='#/monitoring-resolution'?'on':''}" href="#/monitoring-resolution">Theo dõi nghị quyết</a><a class="${h==='#/party-building'?'on':''}" href="#/party-building">Dữ liệu Đảng viên</a><div class="drop"><button class="navbtn ${isOn(h,['#/linked-systems','#/nnmt'])?'on':''}" type="button" data-dd="nnmt">Dữ liệu về NNMT ▾</button><div class="menu"><a href="#/linked-systems/mae-info">MAE-INFO</a><a href="#/linked-systems/vnlis">CSDL đất đai</a></div></div><a class="${h==='#/system-monitoring'?'on':''}" href="#/system-monitoring">Giám sát hệ thống</a><div class="drop"><button class="navbtn ${h.startsWith('#/admin')?'on':''}" type="button" data-dd="adm">Quản trị ▾</button><div class="menu"><a href="#/admin/user">Người dùng</a></div></div></nav></header><main><p class="stamp">S7c+S7d · DỮ LIỆU MẪU</p><h1 style="font-size:20px">${t}</h1>${b}</main>`}
 function bindNav(){document.querySelectorAll('[data-dd]').forEach(btn=>{btn.onclick=e=>{e.stopPropagation();const p=btn.parentElement;document.querySelectorAll('.drop').forEach(d=>{if(d!==p)d.classList.remove('open')});p.classList.toggle('open')}});document.onclick=()=>document.querySelectorAll('.drop').forEach(d=>d.classList.remove('open'))}
-function home(){return `<div class="grid" style="grid-template-columns:1fr 1fr"><div class="card"><h2>KT-XH</h2><p><b class="up" style="font-size:28px">▲ 8,39%</b></p></div><div class="card"><h2>Đảng viên</h2><p><b style="font-size:28px">5.184.758</b></p></div><div class="card"><h2>Nghị quyết</h2><p><b>10</b></p></div><div class="card"><h2>Văn bản</h2><p>Đi 4.604 · Đến 26.867</p></div></div>`}
-function sePage(){return `<div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="kpi"><span class="muted">GDP</span><b class="up">8,39%</b></div><div class="kpi"><span class="muted">CPI</span><b>4,89%</b></div><div class="kpi"><span class="muted">IIP</span><b>14,41%</b></div></div>`}
-function opsPage(){return `<div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="kpi"><span class="muted">NV giao HT</span><b>2,8%</b></div><div class="kpi"><span class="muted">Đến hạn</span><b>95,28%</b></div><div class="kpi"><span class="muted">Ký ĐT</span><b>53,32%</b></div></div>`}
-function hdpPol(){return `<div class="grid" style="grid-template-columns:repeat(5,1fr)"><div class="kpi"><span class="muted">Tổng</span><b>50</b></div><div class="kpi"><span class="muted">HT</span><b class="up">8,0%</b></div><div class="kpi"><span class="muted">Còn</span><b>45 ngày</b></div></div>`}
-function hdpParty(){return `<div class="grid" style="grid-template-columns:repeat(5,1fr)"><div class="kpi"><span class="muted">Tổng</span><b>52</b></div><div class="kpi"><span class="muted">HT</span><b class="up">38,0%</b></div><div class="kpi"><span class="muted">Còn</span><b>45 ngày</b></div></div>`}
-function nqPage(){return `<div class="grid" style="grid-template-columns:repeat(5,1fr)"><div class="kpi"><span class="muted">57-NQ/TW</span><b>2.011</b></div><div class="kpi"><span class="muted">NQ ĐH XIV</span><b>275</b></div></div>`}
-function partyPage(){
- const age=[["Dưới 30 năm","4.025.309"],["30–34","183.774"],["35–39","250.383"],["40–44","254.614"],["45–49","124.420"],["50–54","105.660"]];
- const real=[["Dưới 30","341.487"],["30–40","1.209.742"],["40–50","1.513.268"],["50–60","832.479"],["Trên 60","1.452.067"]];
- return `<p class="muted">01/09–30/09/2026 · tổng hợp mẫu · không PII · không gọi sotaydangvien</p>
- <div class="grid" style="grid-template-columns:repeat(5,1fr)">
-  <div class="kpi"><span class="muted">Tổng số</span><b>5.184.758</b></div>
-  <div class="kpi"><span class="muted">Dùng phần mềm</span><b>4.247.054</b><span class="muted">81,91%</span></div>
-  <div class="kpi"><span class="muted">Miễn sinh hoạt</span><b>374.045</b><span class="muted">7,21%</span></div>
-  <div class="kpi"><span class="muted">Nam</span><b>3.080.187</b><span class="muted">59,41%</span></div>
-  <div class="kpi"><span class="muted">Nữ</span><b>2.104.571</b><span class="muted">40,59%</span></div>
- </div>
- <div class="grid" style="grid-template-columns:1fr 1fr">
-  <div class="card"><h2>Tuổi đảng <span class="tag">DỮ LIỆU MẪU</span></h2><table><tr><th>Nhóm</th><th>Số</th></tr>${age.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div>
-  <div class="card"><h2>Tuổi thực tế</h2><table><tr><th>Nhóm</th><th>Số</th></tr>${real.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div>
- </div>
- <div class="grid" style="grid-template-columns:repeat(3,1fr)">
-  <div class="kpi"><span class="muted">Chi bộ</span><b>194.906</b></div>
-  <div class="kpi"><span class="muted">Buổi sinh hoạt</span><b>243.595</b></div>
-  <div class="kpi"><span class="muted">Học tập NQ</span><b>3.962</b></div>
- </div>
- <div class="card"><p class="muted">Ý kiến đóng góp 46.723 · không danh sách tên/CCCD.</p></div>`}
-function nnmtPage(){return `<div class="card"><p><b>Chưa cấu hình đúng.</b></p><p><a href="https://thongtinnnmt.mae.gov.vn/vn/Default.aspx" target="_blank" rel="noopener">Mở tab Bộ</a></p></div>`}
-function vnlisPage(){return `<div class="card">Stub S7d</div>`}
+function home(){return `<div class="grid" style="grid-template-columns:1fr 1fr"><div class="card"><h2>KT-XH</h2><p><b class="up" style="font-size:28px">▲ 8,39%</b></p></div><div class="card"><h2>Đảng viên</h2><p><b style="font-size:28px">5.184.758</b></p></div><div class="card"><h2>NNMT</h2><p><a href="#/linked-systems/mae-info">MAE-INFO</a> · <a href="#/linked-systems/vnlis">CSDL đất đai</a></p></div><div class="card"><h2>H100</h2><p><a href="#/hundred-day-plan/political">Chính trị</a></p></div></div>`}
+function sePage(){return `<div class="kpi"><span class="muted">GDP</span><b class="up">8,39%</b></div>`}
+function opsPage(){return `<div class="kpi"><span class="muted">NV giao HT</span><b>2,8%</b></div>`}
+function hdpPol(){return `<div class="kpi"><span class="muted">H100 CT</span><b>50 NV · 8%</b></div>`}
+function hdpParty(){return `<div class="kpi"><span class="muted">H100 Đảng</span><b>52 NV · 38%</b></div>`}
+function nqPage(){return `<div class="kpi"><span class="muted">57-NQ/TW</span><b>2.011</b></div>`}
+function partyPage(){return `<div class="kpi"><span class="muted">Đảng viên</span><b>5.184.758</b></div>`}
+function nnmtPage(){
+ const cats=[["Thông tin chung","15 bản đồ"],["Khí tượng Thủy văn","4 nhóm · 7 bản đồ"],["Môi trường","3 nhóm · 9 bản đồ"],["Đất đai","3 nhóm · 24 bản đồ"],["Tài nguyên nước","6 nhóm · 24 bản đồ"],["Bảo tồn thiên nhiên và ĐDSH","3 nhóm · 8 bản đồ"],["Biến đổi khí hậu","3 nhóm · 12 bản đồ"],["Trồng trọt và BVTV","12 nhóm · 66 bản đồ"],["Chăn nuôi và thú y","11 nhóm · 50 bản đồ"],["Lâm nghiệp và Kiểm lâm","6 nhóm · 20 bản đồ"],["Thủy sản và Kiểm ngư","5 nhóm · 20 bản đồ"],["Chất lượng, chế biến","4 nhóm · 17 bản đồ"],["Kinh tế hợp tác và PTNT","8 nhóm · 68 bản đồ"],["Công trình thủy lợi","5 nhóm · 25 bản đồ"],["Biển và Hải đảo","2 nhóm · 8 bản đồ"],["Đê điều và PCTT","7 nhóm · 21 bản đồ"],["Đo đạc bản đồ","Liên kết web"],["Viễn thám","2 nhóm · 0 bản đồ"],["Truy xuất nguồn gốc","Liên kết web"],["Khuyến nông","3 nhóm · 0 bản đồ"]];
+ return `<div class="mae">MAE-INFO · Bộ Nông nghiệp và Môi trường</div>
+  <p><button type="button" onclick="alert('Lab — không gọi host Bộ')">Tải lại</button>
+  <a class="ghost" href="https://thongtinnnmt.mae.gov.vn/vn/Default.aspx" target="_blank" rel="noopener">Mở trong tab mới</a></p>
+  <p class="muted">ioc1 không iframe cổng Bộ (CSP chỉ cho ioc.dcs.vn). Catalog 20 ngành = DỮ LIỆU MẪU.</p>
+  <div class="grid" style="grid-template-columns:1fr 1.2fr"><div class="card" style="min-height:220px"><p class="muted">Carousel minh họa (không tile GIS Bộ)</p></div>
+  <div>${cats.map(([n,m])=>`<span class="pill">${n} · ${m}</span>`).join("")}</div></div>`}
+function vnlisPage(){
+ const rows=[["Thái Nguyên","3.987.182","92,8%"],["Nghệ An","4.117.473","81,7%"],["Lào Cai","4.762.231","89,9%"],["Hà Nội","4.189.073","76,8%"]];
+ return `<p class="muted">Giám sát CSDL đất đai · tháng 09/2026 · DỮ LIỆU MẪU · không nhúng VNLIS production</p>
+  <p><a class="ghost" href="#/linked-systems/vnlis">Mở tab (lab)</a> · không host kh2959</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+   <div class="kpi"><span class="muted">Tổng thửa toàn quốc</span><b>100.675.623</b></div>
+   <div class="kpi"><span class="muted">Đã sang C12</span><b>12.550.775</b></div>
+   <div class="kpi"><span class="muted">Cần XD CSDL</span><b>39.408.810</b></div>
+   <div class="kpi"><span class="muted">Trên VNLIS</span><b>61.266.813</b></div>
+   <div class="kpi"><span class="muted">Có CSDL KH2959</span><b>55.802.623</b></div>
+   <div class="kpi"><span class="muted">Hạn còn</span><b>100 ngày</b></div>
+  </div>
+  <div class="card"><h2>Tỉnh/thành <span class="tag">DỮ LIỆU MẪU</span></h2>
+   <table><tr><th>Tỉnh</th><th>Tổng thửa</th><th>Đã XD</th></tr>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</table></div>`}
 function sysPage(){return `<div class="card">Stub S8c</div>`}
 function adminPage(){return `<div class="card">Stub S9 — không Keycloak</div>`}
-function page(){let h=location.hash||"#/";if(h==='#/nnmt'||h==='#/linked/mae-info')h='#/linked-systems/mae-info';if(h==='#/hundred-day-plan')h='#/hundred-day-plan/political';const app=document.getElementById("app");if(!sessionStorage.getItem("ioc1")&&h!=="#/login"){location.hash="#/login";return}if(h==="#/login"){app.innerHTML=`<main class="card"><h1>Đăng nhập</h1><p class="muted">Không Keycloak.</p><p><input id="u" value="demo.admin"/></p><button id="go">Vào</button></main>`;document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/"};return}const pages={"#/":["TỔNG QUAN ĐIỀU HÀNH",home()],"#/socio-economic":["BÁO CÁO KT-XH",sePage()],"#/operation-management":["TÁC NGHIỆP",opsPage()],"#/hundred-day-plan/political":["H100 CHÍNH TRỊ",hdpPol()],"#/hundred-day-plan/party":["H100 ĐẢNG",hdpParty()],"#/monitoring-resolution":["NGHỊ QUYẾT",nqPage()],"#/party-building":["DỮ LIỆU ĐẢNG VIÊN",partyPage()],"#/linked-systems/mae-info":["MAE-INFO",nnmtPage()],"#/linked-systems/vnlis":["CSDL ĐẤT ĐAI",vnlisPage()],"#/system-monitoring":["GIÁM SÁT",sysPage()]};const [t,b]=h.startsWith("#/admin")?["QUẢN TRị",adminPage()]:(pages[h]||["404","<div class=card>Hash lạ</div>"]);app.innerHTML=chrome(t,b);bindNav()}
+function page(){let h=location.hash||"#/";if(h==='#/nnmt'||h==='#/linked/mae-info')h='#/linked-systems/mae-info';if(h==='#/hundred-day-plan')h='#/hundred-day-plan/political';const app=document.getElementById("app");if(!sessionStorage.getItem("ioc1")&&h!=="#/login"){location.hash="#/login";return}if(h==="#/login"){app.innerHTML=`<main class="card"><h1>Đăng nhập</h1><p class="muted">Không Keycloak.</p><p><input id="u" value="demo.admin"/></p><button id="go">Vào</button></main>`;document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/"};return}const pages={"#/":["TỔNG QUAN ĐIỀU HÀNH",home()],"#/socio-economic":["KT-XH",sePage()],"#/operation-management":["TÁC NGHIỆP",opsPage()],"#/hundred-day-plan/political":["H100 CT",hdpPol()],"#/hundred-day-plan/party":["H100 ĐẢNG",hdpParty()],"#/monitoring-resolution":["NQ",nqPage()],"#/party-building":["ĐẢNG VIÊN",partyPage()],"#/linked-systems/mae-info":["THÔNG TIN NÔNG NGHIỆP VÀ MÔI TRƯỜNG",nnmtPage()],"#/linked-systems/vnlis":["GIÁM SÁT TIẾN ĐỘ CSDL ĐẤT ĐAI",vnlisPage()],"#/system-monitoring":["GIÁM SÁT",sysPage()]};const [t,b]=h.startsWith("#/admin")?["QUẢN TRị",adminPage()]:(pages[h]||["404","<div class=card>Hash lạ</div>"]);app.innerHTML=chrome(t,b);bindNav()}
 addEventListener("hashchange",page);if(!location.hash)location.hash="#/login";page();
 </script></body></html>
