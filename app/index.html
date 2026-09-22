@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Trung tâm điều hành giám sát thông minh VPTWD</title>
+<style>
+:root{--red:#B9000E;--ink:#17204A;--muted:#64748b;--bg:#f4f5f8}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.banner{background:#7f1d1d;color:#fff;text-align:center;font-size:12px;padding:6px}
+header.top{background:var(--red);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:10px 16px}
+.t1{font-size:12px;opacity:.9}.t2{font-weight:700}
+nav a{color:#fff;margin-right:10px;text-decoration:none;font-size:13px}
+main{max-width:1100px;margin:20px auto;padding:0 16px}
+.card{background:#fff;border-radius:12px;padding:16px;margin:12px 0;box-shadow:0 1px 3px #0001}
+.muted{color:var(--muted);font-size:13px}
+button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer}
+input{padding:8px;border:1px solid #ddd;border-radius:8px;width:260px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.kpi{background:#fff;border-radius:12px;padding:12px}.kpi b{display:block;font-size:22px}
+</style>
+</head>
+<body>
+<div class="banner">BẢN CLONE NGHIÊN CỨU KIẾN TRÚC — DỮ LIỆU MẪU — không kết nối SSO / API ioc.dcs.vn</div>
+<div id="app"></div>
+<script>
+const NAV=[
+ ["#/","Trang chủ"],
+ ["#/socio-economic","Kinh tế - Xã hội"],
+ ["#/operation-management","Điều hành tác nghiệp"],
+ ["#/hundred-day-plan","Kế hoạch 100 ngày"],
+ ["#/monitoring-resolution","Theo dõi nghị quyết"],
+ ["#/party-building","Dữ liệu Đảng viên"],
+ ["#/nnmt","Dữ liệu NNMT"],
+ ["#/system-monitoring","Giám sát hệ thống"],
+];
+function chrome(title,body){
+  return `<header class="top"><div><div class="t1">Văn phòng Trung ương Đảng</div><div class="t2">Trung tâm điều hành giám sát thông minh VPTWD</div></div>
+  <nav>${NAV.map(([h,l])=>`<a href="${h}">${l}</a>`).join("")}<a href="#/admin/user">Quản trị</a></nav></header>
+  <main><h1>${title}</h1>${body}</main>`;
+}
+function page(){
+  const h=location.hash||"#/";
+  const app=document.getElementById("app");
+  if(!sessionStorage.getItem("ioc1") && h!=="#/login"){location.hash="#/login";return;}
+  if(h==="#/login"){
+    app.innerHTML=`<main class="card"><h1>Đăng nhập demo</h1>
+      <p class="muted">Bản clone — không gửi mật khẩu tới Keycloak.</p>
+      <p><input id="u" placeholder="demo.admin"/></p>
+      <button id="go">Đăng nhập</button></main>`;
+    document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};
+    return;
+  }
+  const pages={
+    "#/":["Tổng quan điều hành","<div class='grid'><div class='kpi'>GDP năm<b>+7,25%</b><span class='muted'>DỮ LIỆU MẪU</span></div><div class='kpi'>CPI<b>+4,10%</b></div><div class='kpi'>Nhiệm vụ HT<b>64,1%</b></div><div class='kpi'>Đảng viên<b>4.862.000</b></div></div>"],
+    "#/socio-economic":["Kinh tế - Xã hội","<div class='card'>KPI KT-XH mẫu. Không phải số liệu Tổng cục Thống kê.</div>"],
+    "#/operation-management":["Điều hành tác nghiệp","<div class='card'>Tỷ lệ hoàn thành 64,1% — DỮ LIỆU MẪU.</div>"],
+    "#/hundred-day-plan":["Kế hoạch 100 ngày","<div class='card'>48 nhiệm vụ mẫu — không đọc H100 production.</div>"],
+    "#/monitoring-resolution":["Theo dõi nghị quyết","<div class='card'>Thẻ NQ/TW mẫu (57, 59, 66…).</div>"],
+    "#/party-building":["Dữ liệu Đảng viên","<div class='card'>Tổng số lượng đảng viên mẫu. Không PII.</div>"],
+    "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p><button onclick=\"alert('Bản clone — không gọi MAE-INFO / IOC API')\">Tải lại</button> <button onclick=\"alert('Bản clone — không mở cổng Bộ')\">Mở trong tab mới</button></div>"],
+    "#/system-monitoring":["Giám sát hệ thống","<div class='card'>Tab ứng dụng / hạ tầng — DỮ LIỆU MẪU.</div>"],
+    "#/admin/user":["Quản trị hệ thống","<div class='card'>Stub admin. Không Keycloak.</div>"],
+  };
+  const [t,b]=pages[h]||["Không tìm thấy","<p>Hash không khớp.</p>"];
+  app.innerHTML=chrome(t,b);
+}
+addEventListener("hashchange",page);
+if(!location.hash) location.hash="#/login";
+page();
+</script>
+</body></html>
