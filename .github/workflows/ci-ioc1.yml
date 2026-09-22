@@ -1,0 +1,18 @@
+name: ci-ioc1
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: validate index
+        run: |
+          set -e
+          test -f app/index.html
+          grep -q 'Trung tâm điều hành giám sát thông minh VPTWD' app/index.html
+          grep -q 'BẢN NGHIÊN CỨU KIẾN TRÚC' app/index.html
+          if grep -q 'BẢN CLONE NGHIÊN CỨU KIẾN TRÚC' app/index.html; then exit 1; fi
+          echo OK
