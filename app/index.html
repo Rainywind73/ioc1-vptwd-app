@@ -21,7 +21,7 @@ input{padding:8px;border:1px solid #ddd;border-radius:8px;width:260px}
 </style>
 </head>
 <body>
-<div class="banner">BẢN CLONE NGHIÊN CỨU KIẾN TRÚC — DỮ LIỆU MẪU — không kết nối SSO / API ioc.dcs.vn</div>
+<div class="banner">BẢN NGHIÊN CỨU KIẾN TRÚC — DỮ LIỆU MẪU — không kết nối SSO / API ioc.dcs.vn</div>
 <div id="app"></div>
 <script>
 const NAV=[
@@ -45,7 +45,7 @@ function page(){
   if(!sessionStorage.getItem("ioc1") && h!=="#/login"){location.hash="#/login";return;}
   if(h==="#/login"){
     app.innerHTML=`<main class="card"><h1>Đăng nhập demo</h1>
-      <p class="muted">Bản clone — không gửi mật khẩu tới Keycloak.</p>
+      <p class="muted">Bản nghiên cứu — không gửi mật khẩu tới Keycloak.</p>
       <p><input id="u" placeholder="demo.admin"/></p>
       <button id="go">Đăng nhập</button></main>`;
     document.getElementById("go").onclick=()=>{sessionStorage.setItem("ioc1","1");location.hash="#/";};
@@ -58,7 +58,7 @@ function page(){
     "#/hundred-day-plan":["Kế hoạch 100 ngày","<div class='card'>48 nhiệm vụ mẫu — không đọc H100 production.</div>"],
     "#/monitoring-resolution":["Theo dõi nghị quyết","<div class='card'>Thẻ NQ/TW mẫu (57, 59, 66…).</div>"],
     "#/party-building":["Dữ liệu Đảng viên","<div class='card'>Tổng số lượng đảng viên mẫu. Không PII.</div>"],
-    "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p><button onclick=\"alert('Bản clone — không gọi MAE-INFO / IOC API')\">Tải lại</button> <button onclick=\"alert('Bản clone — không mở cổng Bộ')\">Mở trong tab mới</button></div>"],
+    "#/nnmt":["Thông tin Nông nghiệp và Môi trường","<div class='card'><p class='muted'>Hệ thống liên kết · MAE-INFO (chưa cấu hình URL)</p><p><b>Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên.</b></p><button onclick=\"alert('Bản nghiên cứu — không gọi MAE-INFO / IOC API')\">Tải lại</button> <button onclick=\"alert('Bản nghiên cứu — không mở cổng Bộ')\">Mở trong tab mới</button></div>"],
     "#/system-monitoring":["Giám sát hệ thống","<div class='card'>Tab ứng dụng / hạ tầng — DỮ LIỆU MẪU.</div>"],
     "#/admin/user":["Quản trị hệ thống","<div class='card'>Stub admin. Không Keycloak.</div>"],
   };
