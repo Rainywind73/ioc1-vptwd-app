@@ -1,0 +1,11 @@
+[Unit]
+Description=IOC1 pull app every 5 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Persistent=true
+Unit=ioc1-cd.service
+
+[Install]
+WantedBy=timers.target

@@ -15,4 +15,10 @@ jobs:
           grep -q 'Trung tâm điều hành giám sát thông minh VPTWD' app/index.html
           grep -q 'BẢN NGHIÊN CỨU KIẾN TRÚC' app/index.html
           if grep -q 'BẢN CLONE NGHIÊN CỨU KIẾN TRÚC' app/index.html; then exit 1; fi
+          test -f app/css/app.css
+          test -f app/js/app.js
+          test -f app/js/router.js
+          test -f app/data/mock/boot.json
+          test -f app/data/mock/home.json
+          test -f deploy/vps-pull-ioc1.sh
           echo OK

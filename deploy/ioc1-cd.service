@@ -1,0 +1,8 @@
+[Unit]
+Description=IOC1 pull app into docroot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/ioc1-src/deploy/vps-pull-ioc1.sh
