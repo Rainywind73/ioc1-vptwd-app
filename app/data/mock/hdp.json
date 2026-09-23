@@ -4,7 +4,7 @@
   "hash": "#/hundred-day-plan",
   "h1": "Kế hoạch 100 ngày xử lý điểm nghẽn CĐS",
   "timezone": "Asia/Ho_Chi_Minh",
-  "disclaimer": "DỮ LIỆU MẪU — một màn, chưa tách tuyến",
+  "disclaimer": "DỮ LIỆU MẪU — một màn, chưa tách HDP-P và HDP-D",
   "blocks": [
     {
       "type": "kpis",
@@ -16,8 +16,16 @@
       ]
     },
     {
+      "type": "bars",
+      "title": "Hai nhóm trên cùng một màn",
+      "items": [
+        { "label": "Ban chỉ đạo CĐS", "value": "70%", "pct": 70 },
+        { "label": "Hệ thống chính trị", "value": "55%", "pct": 55 }
+      ]
+    },
+    {
       "type": "table",
-      "title": "Một màn — hai nhóm",
+      "title": "Đầu việc mẫu",
       "columns": ["Nhóm", "Đầu việc mẫu", "Tiến độ"],
       "rows": [
         ["Ban chỉ đạo CĐS", "Chuẩn hóa quy trình mẫu", "70%"],

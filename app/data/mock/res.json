@@ -24,6 +24,25 @@
         { "label": "Nghị quyết mẫu 03", "value": "30%", "pct": 30 },
         { "label": "Nghị quyết mẫu 04", "value": "100%", "pct": 100 }
       ]
+    },
+    {
+      "type": "table",
+      "title": "Danh sách 12 nghị quyết mẫu",
+      "columns": ["Mã", "Tên mẫu", "Hạn", "Trạng thái"],
+      "rows": [
+        ["NQ-01", "Nghị quyết mẫu 01", "Đúng hạn", "80%"],
+        ["NQ-02", "Nghị quyết mẫu 02", "Đúng hạn", "55%"],
+        ["NQ-03", "Nghị quyết mẫu 03", "Chậm", "30%"],
+        ["NQ-04", "Nghị quyết mẫu 04", "Đúng hạn", "100%"],
+        ["NQ-05", "Nghị quyết mẫu 05", "Đúng hạn", "70%"],
+        ["NQ-06", "Nghị quyết mẫu 06", "Chậm", "25%"],
+        ["NQ-07", "Nghị quyết mẫu 07", "Đúng hạn", "60%"],
+        ["NQ-08", "Nghị quyết mẫu 08", "Đúng hạn", "90%"],
+        ["NQ-09", "Nghị quyết mẫu 09", "Chậm", "15%"],
+        ["NQ-10", "Nghị quyết mẫu 10", "Đúng hạn", "40%"],
+        ["NQ-11", "Nghị quyết mẫu 11", "Chưa giao", "0%"],
+        ["NQ-12", "Nghị quyết mẫu 12", "Chưa giao", "0%"]
+      ]
     }
   ]
 }

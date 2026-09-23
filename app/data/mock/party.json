@@ -16,14 +16,41 @@
       ]
     },
     {
-      "type": "table",
-      "title": "Cơ cấu mẫu",
-      "columns": ["Nhóm", "Số lượng mẫu", "Tỷ lệ"],
-      "rows": [
-        ["Đảng viên nữ", "1.720.000", "35%"],
-        ["Dưới 40 tuổi", "1.460.000", "30%"],
-        ["Chi bộ cơ sở", "168.200", "—"],
-        ["Đảng bộ cấp trên", "38.200", "—"]
+      "type": "tabs",
+      "items": [
+        {
+          "id": "mix",
+          "label": "Cơ cấu",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Cơ cấu mẫu",
+              "columns": ["Nhóm", "Số lượng mẫu", "Tỷ lệ"],
+              "rows": [
+                ["Đảng viên nữ", "1.720.000", "35%"],
+                ["Dưới 40 tuổi", "1.460.000", "30%"],
+                ["Từ 40 đến 60", "2.430.000", "50%"],
+                ["Trên 60", "972.000", "15%"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "org",
+          "label": "Tổ chức",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Tổ chức mẫu",
+              "columns": ["Loại", "Số lượng mẫu", "Ghi chú"],
+              "rows": [
+                ["Chi bộ cơ sở", "168.200", "Mẫu"],
+                ["Đảng bộ cơ sở", "32.400", "Mẫu"],
+                ["Đảng bộ cấp trên", "5.800", "Mẫu"]
+              ]
+            }
+          ]
+        }
       ]
     }
   ]

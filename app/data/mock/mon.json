@@ -16,14 +16,22 @@
       ]
     },
     {
+      "type": "links",
+      "items": [
+        { "label": "Sổ tay Đảng viên", "href": "#/party-building", "note": "Đạt · 40 ms" },
+        { "label": "Theo dõi nghị quyết", "href": "#/monitoring-resolution", "note": "Đạt · 55 ms" },
+        { "label": "Điều hành tác nghiệp", "href": "#/operation-management", "note": "Chậm · 180 ms" }
+      ]
+    },
+    {
       "type": "table",
-      "title": "Tình trạng mẫu",
-      "columns": ["Thành phần", "Trạng thái", "Độ trễ mẫu"],
+      "title": "Nhật ký mẫu",
+      "columns": ["Thời điểm mẫu", "Thành phần", "Mức"],
       "rows": [
-        ["Sổ tay Đảng viên", "Đạt", "40 ms"],
-        ["Theo dõi nghị quyết", "Đạt", "55 ms"],
-        ["Điều hành tác nghiệp", "Chậm", "180 ms"],
-        ["Khung đăng nhập demo", "Đạt", "20 ms"]
+        ["08:10", "Sổ tay Đảng viên", "Đạt"],
+        ["08:12", "Theo dõi nghị quyết", "Đạt"],
+        ["08:16", "Điều hành tác nghiệp", "Chậm"],
+        ["08:20", "Khung đăng nhập demo", "Đạt"]
       ]
     }
   ]

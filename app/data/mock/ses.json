@@ -16,16 +16,57 @@
       ]
     },
     {
-      "type": "table",
-      "title": "Bảng chỉ tiêu mẫu",
-      "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
-      "rows": [
-        ["GDP", "Q2/2026", "+7,25%", "Đang theo dõi"],
-        ["CPI", "6 tháng", "+3,10%", "Đang theo dõi"],
-        ["Bán lẻ", "6 tháng", "+8,40%", "Đang theo dõi"],
-        ["IIP", "6 tháng", "+6,70%", "Đang theo dõi"],
-        ["Xuất khẩu", "6 tháng", "+9,10%", "Mẫu"],
-        ["Nhập khẩu", "6 tháng", "+7,80%", "Mẫu"]
+      "type": "tabs",
+      "items": [
+        {
+          "id": "grow",
+          "label": "Tăng trưởng",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Tăng trưởng mẫu",
+              "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
+              "rows": [
+                ["GDP", "Q2/2026", "+7,25%", "Đang theo dõi"],
+                ["IIP", "6 tháng", "+6,70%", "Đang theo dõi"],
+                ["Nông nghiệp", "6 tháng", "+3,20%", "Mẫu"],
+                ["Công nghiệp", "6 tháng", "+7,10%", "Mẫu"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "price",
+          "label": "Giá",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Giá mẫu",
+              "columns": ["Nhóm", "Kỳ", "Giá trị mẫu", "Trạng thái"],
+              "rows": [
+                ["CPI", "6 tháng", "+3,10%", "Mẫu"],
+                ["Lương thực", "6 tháng", "+2,40%", "Mẫu"],
+                ["Nhà ở", "6 tháng", "+4,10%", "Mẫu"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "trade",
+          "label": "Thương mại",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Thương mại mẫu",
+              "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
+              "rows": [
+                ["Bán lẻ", "6 tháng", "+8,40%", "Mẫu"],
+                ["Xuất khẩu", "6 tháng", "+9,10%", "Mẫu"],
+                ["Nhập khẩu", "6 tháng", "+7,80%", "Mẫu"]
+              ]
+            }
+          ]
+        }
       ]
     }
   ]

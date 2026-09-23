@@ -16,14 +16,40 @@
       ]
     },
     {
-      "type": "table",
-      "title": "Hàng đợi mẫu",
-      "columns": ["Mã mẫu", "Loại", "Đơn vị", "Hạn"],
-      "rows": [
-        ["VB-MẪU-001", "Đi", "Văn phòng demo", "Trong hạn"],
-        ["VB-MẪU-002", "Đến", "Vụ demo", "Trong hạn"],
-        ["VB-MẪU-003", "Đến", "Cơ quan demo", "Quá hạn"],
-        ["VB-MẪU-004", "Đi", "Đơn vị demo", "Trong hạn"]
+      "type": "tabs",
+      "items": [
+        {
+          "id": "out",
+          "label": "Văn bản đi",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Đi — mẫu",
+              "columns": ["Mã mẫu", "Đơn vị", "Hạn"],
+              "rows": [
+                ["VB-MẪU-001", "Văn phòng demo", "Trong hạn"],
+                ["VB-MẪU-004", "Đơn vị demo", "Trong hạn"],
+                ["VB-MẪU-006", "Vụ demo", "Quá hạn"]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "in",
+          "label": "Văn bản đến",
+          "blocks": [
+            {
+              "type": "table",
+              "title": "Đến — mẫu",
+              "columns": ["Mã mẫu", "Đơn vị", "Hạn"],
+              "rows": [
+                ["VB-MẪU-002", "Vụ demo", "Trong hạn"],
+                ["VB-MẪU-003", "Cơ quan demo", "Quá hạn"],
+                ["VB-MẪU-005", "Đơn vị demo", "Trong hạn"]
+              ]
+            }
+          ]
+        }
       ]
     }
   ]

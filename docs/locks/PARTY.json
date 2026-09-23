@@ -1,0 +1,20 @@
+{
+  "code": "PARTY",
+  "hash": "#/party-building",
+  "title": "Dữ liệu Đảng viên",
+  "shippedAt": "2026-09-23T06:23:00Z",
+  "base": "dde8fe5d0f5977d2b8b5da9edf87c2470fa71d4c",
+  "surface": [
+    "4.862.000 đảng viên mẫu",
+    "206.400 tổ chức Đảng mẫu",
+    "tab Cơ cấu và Tổ chức"
+  ],
+  "files": {
+    "app/index.html": "57000164e6fdcca8abdb6bbb470604ed3246d8b8393eac8da560a4387899eae6",
+    "app/css/app.css": "57a552e816ff3c25adf0bfe56e4e80422d8909251dc7a29d48229bc451b6e3e9",
+    "app/js/app.js": "cbc1334c914c72b9b00dc4e73c81b50278cc164be306e400b181f8cec494f50d",
+    "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
+    "app/data/mock/boot.json": "ee7e369518668084ebd706841fb8375926b8c933a800c5036b6655910021b689",
+    "app/data/mock/party.json": "2685c0018f32c2bd962240b6e9be201d2b837b419fe5ff279f68f7565646879b"
+  }
+}
