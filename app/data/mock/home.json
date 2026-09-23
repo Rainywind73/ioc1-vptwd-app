@@ -1,0 +1,117 @@
+{
+  "disclaimer": "DỮ LIỆU MẪU — bố cục theo ảnh đối chiếu, số làm tròn, không phải KPI trên ảnh.",
+  "asOf": "2026-09-23T11:29:00+07:00",
+  "updatedLabel": "Cập nhật hôm nay · 23/09/2026",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "h1": "TỔNG QUAN ĐIỀU HÀNH",
+  "cards": [
+    {
+      "id": "ses",
+      "title": "Chỉ tiêu kinh tế - xã hội",
+      "kind": "metric",
+      "href": "#/socio-economic",
+      "tone": "up",
+      "value": "+7,25%",
+      "note": "GDP cả nước so với cùng kỳ · Q2/2026"
+    },
+    {
+      "id": "party",
+      "title": "Dữ liệu Đảng viên",
+      "kind": "pair",
+      "href": "#/party-building",
+      "pair": [
+        { "value": "4.862.000", "label": "Tổng số Đảng viên" },
+        { "value": "206.400", "label": "Tổng số tổ chức Đảng" }
+      ]
+    },
+    {
+      "id": "res",
+      "title": "Theo dõi nghị quyết",
+      "kind": "metric",
+      "href": "#/monitoring-resolution",
+      "tone": "ink",
+      "value": "12",
+      "note": "nghị quyết đang theo dõi"
+    },
+    {
+      "id": "docs",
+      "title": "Văn bản điện tử",
+      "kind": "deltas",
+      "href": "#/operation-management",
+      "deltas": [
+        { "label": "Tổng văn bản đi", "value": "4.120", "delta": "9,40% so với kỳ trước" },
+        { "label": "Tổng văn bản đến", "value": "25.600", "delta": "8,15% so với kỳ trước" }
+      ]
+    },
+    {
+      "id": "hr",
+      "title": "Quản lý công việc & Đánh giá cán bộ",
+      "kind": "links",
+      "links": [
+        { "id": "task", "label": "Quản lý công việc", "popup": "task" },
+        { "id": "cadre", "label": "Đánh giá cán bộ", "popup": "cadre" }
+      ]
+    },
+    {
+      "id": "mae",
+      "title": "Dữ liệu Nông nghiệp - Môi trường",
+      "kind": "links",
+      "links": [
+        { "id": "land", "label": "CSDL Đất đai", "popup": "vnlis" },
+        { "id": "nnmt", "label": "Dữ liệu NN-MT", "popup": "mae" }
+      ]
+    },
+    {
+      "id": "hdp",
+      "title": "Kế hoạch 100 ngày xử lý điểm nghẽn CĐS",
+      "kind": "links",
+      "accent": true,
+      "links": [
+        { "id": "party-body", "label": "Ban chỉ đạo chuyển đổi số trong các cơ quan Đảng", "popup": "hdp-party" },
+        { "id": "political", "label": "Hệ thống chính trị", "popup": "hdp-political" }
+      ]
+    },
+    {
+      "id": "mon",
+      "title": "Giám sát ứng dụng & hệ thống",
+      "kind": "apps",
+      "href": "#/system-monitoring",
+      "apps": [
+        { "label": "Sổ tay Đảng viên", "href": "#/party-building" },
+        { "label": "Theo dõi nghị quyết", "href": "#/monitoring-resolution" },
+        { "label": "Điều hành tác nghiệp", "href": "#/operation-management" }
+      ]
+    }
+  ],
+  "popups": {
+    "task": {
+      "title": "Quản lý công việc",
+      "body": "Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên."
+    },
+    "cadre": {
+      "title": "Đánh giá cán bộ",
+      "body": "Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên."
+    },
+    "vnlis": {
+      "title": "CSDL Đất đai",
+      "body": "Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên."
+    },
+    "mae": {
+      "title": "Dữ liệu NN-MT",
+      "body": "Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên."
+    },
+    "hdp-party": {
+      "title": "Ban chỉ đạo chuyển đổi số trong các cơ quan Đảng",
+      "body": "Liên kết chưa mở. Một màn kế hoạch 100 ngày chờ lệnh riêng. DỮ LIỆU MẪU."
+    },
+    "hdp-political": {
+      "title": "Hệ thống chính trị",
+      "body": "Liên kết chưa mở. Không tách tuyến trong lượt này. DỮ LIỆU MẪU."
+    }
+  },
+  "states": {
+    "loading": "Đang tải tổng quan mẫu…",
+    "empty": "Chưa có ô điều hành.",
+    "error": "Không tải được tổng quan mẫu."
+  }
+}

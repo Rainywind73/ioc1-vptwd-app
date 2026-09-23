@@ -9,7 +9,21 @@
       content="Bản nghiên cứu kiến trúc IOC-VPTWD — DỮ LIỆU MẪU, không kết nối SSO."
     />
     <title>Trung tâm điều hành giám sát thông minh VPTWD</title>
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("ioc1.theme");
+          if (t !== "dark" && t !== "light") {
+            t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          }
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/png" href="assets/logo_vptwd.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
   </head>
   <body>

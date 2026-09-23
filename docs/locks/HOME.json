@@ -1,0 +1,21 @@
+{
+  "code": "HOME",
+  "title": "Tổng quan điều hành",
+  "shippedAt": "2026-09-23T05:32:00Z",
+  "base": "64c1f4f4485d3cd7bda134104358b902167a4ce0",
+  "surface": [
+    "8 ô, cùng bố cục 2×4",
+    "6 popup Mở liên kết",
+    "3 lối tắt giám sát",
+    "dark mode, lưu ioc1.theme",
+    "breakpoint 1440 / 980 / 760 / 420"
+  ],
+  "files": {
+    "app/index.html": "57000164e6fdcca8abdb6bbb470604ed3246d8b8393eac8da560a4387899eae6",
+    "app/css/app.css": "b7ded96cd5f934e91111e94b44d04ea99df5390d45c1e13ef4b456e37d205605",
+    "app/js/app.js": "4cecff2a346774e6b9cdef71126b7d345358793eb7c689b21855e27b4ace9501",
+    "app/js/router.js": "fa28f498f7f9d1b275c5a9af69018a5fa1eb957a5806a0ddb036ca833a562f61",
+    "app/data/mock/boot.json": "1c158374259630cb8ca2f324c5d2c38ca5c7ca2a53d2c8534b111fcc24201d6f",
+    "app/data/mock/home.json": "5d6808bf61e6e6c292caa084620c9bbd835783249f6208a9e5ea097262fbaf0e"
+  }
+}

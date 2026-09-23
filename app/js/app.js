@@ -9,6 +9,7 @@
   var root = document.getElementById("app");
   var router = null;
   var DATA = null;
+  var HOME = null;
   var pop = null;
   var docBound = false;
   function closePop() {
@@ -154,6 +155,7 @@
         "</div>" +
         '<nav class="icons" aria-label="Điều hướng">' + links + "</nav>" +
         '<div class="red-end">' +
+          '<button type="button" class="theme" data-theme-btn aria-label="Đổi giao diện"></button>' +
           '<button type="button" id="bell" aria-label="' + esc(tb.notifications) + '">🔔</button>' +
           '<button type="button" class="user" id="acc" aria-label="' + esc(tb.account) + '">👤</button>' +
         "</div>" +
@@ -167,6 +169,7 @@
     var sup = DATA.support;
     return (
       '<div class="login-stage">' +
+        '<button type="button" class="theme-fab" data-theme-btn aria-label="Đổi giao diện"></button>' +
         '<div class="login-body">' +
           '<img class="seal" src="assets/logo_vptwd.png" alt="Biểu trưng" width="84" height="58" />' +
           '<p class="login-org">' + esc(DATA.org) + "</p>" +
@@ -196,27 +199,57 @@
     );
   }
 
+  function extIcon() {
+    return '<svg class="ext" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M14 5h5v5M19 5l-8 8M10 6H6v12h12v-4"/></svg>';
+  }
+
   function pageShell() {
-    var items = navItems();
-    var cards = items.map(function (n) {
-      return (
-        '<a class="mod" href="' + esc(n.hash) + '">' +
-          '<div class="code">' + esc(n.code) + "</div>" +
-          "<strong>" + esc(n.label) + "</strong>" +
-          "<span>" + esc(n.blurb) + "</span>" +
-          '<div><span class="pill' + (n.open ? " on" : "") + '">' + (n.open ? "Khung" : "Chưa mở") + "</span></div>" +
-        "</a>"
-      );
+    var H = HOME;
+    if (!H || !H.cards) {
+      return header("#/") + '<main class="shell"><p class="asof">' + esc((H && H.states && H.states.error) || "Không tải được tổng quan mẫu.") + "</p></main>";
+    }
+    var cards = H.cards.map(function (c) {
+      var head =
+        '<div class="ov-head"><span class="ov-ic">' + icon(c.id === "docs" ? "ops" : c.id === "hr" ? "party" : c.id === "mon" ? "mon" : c.id === "hdp" ? "hdp" : c.id === "mae" ? "mae" : c.id === "res" ? "res" : c.id === "party" ? "party" : "ses") + "</span><h2>" + esc(c.title) + "</h2>" +
+        (c.href && c.kind !== "apps"
+          ? '<span class="ov-go">' + extIcon() + "</span>"
+          : c.href
+            ? '<a class="ov-go" href="' + esc(c.href) + '" aria-label="Mở ' + esc(c.title) + '">' + extIcon() + "</a>"
+            : "") +
+        "</div>";
+      var body = "";
+      if (c.kind === "metric") {
+        body = '<div class="ov-val ' + esc(c.tone || "") + '">' + (c.tone === "up" ? "▲ " : "") + esc(c.value) + "</div><p>" + esc(c.note) + "</p>";
+      } else if (c.kind === "pair") {
+        body = '<div class="ov-pair">' + c.pair.map(function (p) {
+          return "<div><b>" + esc(p.value) + "</b><span>" + esc(p.label) + "</span></div>";
+        }).join("") + "</div>";
+      } else if (c.kind === "deltas") {
+        body = '<div class="ov-pair">' + c.deltas.map(function (p) {
+          return "<div><span>" + esc(p.label) + "</span><b>" + esc(p.value) + '</b><em>▼ ' + esc(p.delta) + "</em></div>";
+        }).join("") + "</div>";
+      } else if (c.kind === "links") {
+        body = '<div class="ov-links">' + c.links.map(function (l) {
+          return '<button type="button" class="ov-link" data-pop="' + esc(l.popup) + '"><span class="ov-ic">' + icon(l.id === "land" || l.id === "nnmt" ? "mae" : l.id === "political" || l.id === "party-body" ? "hdp" : "party") + "</span><strong>" + esc(l.label) + '</strong><small>Mở liên kết</small></button>';
+        }).join("") + "</div>";
+      } else if (c.kind === "apps") {
+        body = '<div class="ov-apps">' + c.apps.map(function (a) {
+          return '<a class="mon-link" href="' + esc(a.href) + '"><span class="ov-ic">' + icon("mon") + "</span><span>" + esc(a.label) + "</span></a>";
+        }).join("") + "</div>";
+      }
+      var cls = "ov-card" + (c.accent ? " accent" : "");
+      if (c.href && c.kind !== "apps") {
+        return '<a class="' + cls + '" href="' + esc(c.href) + '">' + head + body + "</a>";
+      }
+      return '<article class="' + cls + '">' + head + body + "</article>";
     }).join("");
     return (
       header("#/") +
-      '<main class="shell">' +
-        '<p class="kicker">BOOT</p>' +
-        "<h1>" + esc(DATA.shellH1) + "</h1>" +
-        '<p class="asof">' + esc(DATA.updatedLabel) + " · " + esc(DATA.timezone || "Asia/Ho_Chi_Minh") + " · DỮ LIỆU MẪU</p>" +
-        '<p class="asof">' + esc(viaLine()) + "</p>" +
-        '<div class="mod-grid">' + cards + "</div>" +
-      "</main>"
+      '<main class="ov">' +
+        "<h1>" + esc(H.h1) + "</h1>" +
+        '<div class="ov-grid">' + cards + "</div>" +
+      "</main>" +
+      '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>'
     );
   }
 
@@ -336,6 +369,38 @@
     });
   }
 
+  function themeMode() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  function themeIcon(mode) {
+    if (mode === "dark") {
+      return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>';
+    }
+    return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>';
+  }
+
+  function paintThemeButtons() {
+    var mode = themeMode();
+    var label = mode === "dark" ? "Chuyển giao diện sáng" : "Chuyển giao diện tối";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-theme-btn]"), function (btn) {
+      btn.innerHTML = themeIcon(mode);
+      btn.setAttribute("aria-label", label);
+    });
+  }
+
+  function bindTheme() {
+    paintThemeButtons();
+    Array.prototype.forEach.call(document.querySelectorAll("[data-theme-btn]"), function (btn) {
+      btn.addEventListener("click", function () {
+        var next = themeMode() === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        try { localStorage.setItem("ioc1.theme", next); } catch (e) {}
+        paintThemeButtons();
+      });
+    });
+  }
+
   function bindLogin() {
     var form = document.getElementById("login-form");
     var notice = function (msg) {
@@ -369,6 +434,7 @@
         router.go("/");
       }, 280);
     });
+    bindTheme();
   }
 
   function bindShell() {
@@ -415,6 +481,24 @@
       docBound = true;
       document.addEventListener("click", onDocClick);
     }
+    Array.prototype.forEach.call(document.querySelectorAll("[data-pop]"), function (btn) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var id = btn.getAttribute("data-pop");
+        var pop = (HOME && HOME.popups && HOME.popups[id]) || { title: "Liên kết", body: "Hệ thống này chưa được cấu hình đúng. Vui lòng liên hệ quản trị viên." };
+        document.getElementById("dlg-title").textContent = pop.title;
+        document.getElementById("dlg-body").textContent = pop.body;
+        document.getElementById("dlg").hidden = false;
+      });
+    });
+    var dlg = document.getElementById("dlg");
+    var close = document.getElementById("dlg-close");
+    if (dlg && close) {
+      close.addEventListener("click", function () { dlg.hidden = true; });
+      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.hidden = true; });
+    }
+    bindTheme();
   }
 
   function onDocClick() {
@@ -476,7 +560,15 @@
     if (!window.fetch) { done(FALLBACK); return; }
     fetch("data/mock/boot.json", { cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) { done(data || FALLBACK); })
+      .then(function (data) {
+        return fetch("data/mock/home.json", { cache: "no-store" })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (home) { return { boot: data, home: home }; });
+      })
+      .then(function (pack) {
+        HOME = pack.home;
+        done(pack.boot || FALLBACK);
+      })
       .catch(function () { done(FALLBACK); });
   }
 
