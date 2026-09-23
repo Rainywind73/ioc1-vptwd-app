@@ -1,0 +1,30 @@
+{
+  "route": "hdp",
+  "code": "HDP",
+  "hash": "#/hundred-day-plan",
+  "h1": "Kế hoạch 100 ngày xử lý điểm nghẽn CĐS",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU — một màn, chưa tách tuyến",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "Đầu việc", "value": "18", "note": "mẫu", "tone": "" },
+        { "label": "Xong", "value": "11", "note": "mẫu", "tone": "up" },
+        { "label": "Đang làm", "value": "5", "note": "mẫu", "tone": "" },
+        { "label": "Điểm nghẽn", "value": "2", "note": "mẫu", "tone": "down" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Một màn — hai nhóm",
+      "columns": ["Nhóm", "Đầu việc mẫu", "Tiến độ"],
+      "rows": [
+        ["Ban chỉ đạo CĐS", "Chuẩn hóa quy trình mẫu", "70%"],
+        ["Ban chỉ đạo CĐS", "Nối sổ tay mẫu", "40%"],
+        ["Hệ thống chính trị", "Rà điểm nghẽn mẫu", "55%"],
+        ["Hệ thống chính trị", "Báo cáo tuần mẫu", "100%"]
+      ]
+    }
+  ]
+}

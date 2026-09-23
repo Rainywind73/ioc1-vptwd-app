@@ -1,0 +1,29 @@
+{
+  "route": "res",
+  "code": "RES",
+  "hash": "#/monitoring-resolution",
+  "h1": "Theo dõi nghị quyết",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "Đang theo dõi", "value": "12", "note": "khớp ô trang chủ", "tone": "" },
+        { "label": "Đúng hạn", "value": "7", "note": "mẫu", "tone": "up" },
+        { "label": "Chậm", "value": "3", "note": "mẫu", "tone": "down" },
+        { "label": "Chưa giao", "value": "2", "note": "mẫu", "tone": "" }
+      ]
+    },
+    {
+      "type": "bars",
+      "title": "Tiến độ mẫu",
+      "items": [
+        { "label": "Nghị quyết mẫu 01", "value": "80%", "pct": 80 },
+        { "label": "Nghị quyết mẫu 02", "value": "55%", "pct": 55 },
+        { "label": "Nghị quyết mẫu 03", "value": "30%", "pct": 30 },
+        { "label": "Nghị quyết mẫu 04", "value": "100%", "pct": 100 }
+      ]
+    }
+  ]
+}

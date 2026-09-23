@@ -1,0 +1,30 @@
+{
+  "route": "mon",
+  "code": "MON",
+  "hash": "#/system-monitoring",
+  "h1": "Giám sát ứng dụng và hệ thống",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "Ứng dụng", "value": "3", "note": "lối tắt trang chủ", "tone": "" },
+        { "label": "Đạt", "value": "2", "note": "mẫu", "tone": "up" },
+        { "label": "Chậm", "value": "1", "note": "mẫu", "tone": "down" },
+        { "label": "Sự cố mở", "value": "0", "note": "mẫu", "tone": "up" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Tình trạng mẫu",
+      "columns": ["Thành phần", "Trạng thái", "Độ trễ mẫu"],
+      "rows": [
+        ["Sổ tay Đảng viên", "Đạt", "40 ms"],
+        ["Theo dõi nghị quyết", "Đạt", "55 ms"],
+        ["Điều hành tác nghiệp", "Chậm", "180 ms"],
+        ["Khung đăng nhập demo", "Đạt", "20 ms"]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "route": "ses",
+  "code": "SES",
+  "hash": "#/socio-economic",
+  "h1": "Chỉ tiêu kinh tế - xã hội",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "GDP cùng kỳ", "value": "+7,25%", "note": "Q2/2026 · mẫu", "tone": "up" },
+        { "label": "CPI", "value": "+3,10%", "note": "ước mẫu", "tone": "up" },
+        { "label": "Bán lẻ", "value": "+8,40%", "note": "ước mẫu", "tone": "up" },
+        { "label": "IIP", "value": "+6,70%", "note": "ước mẫu", "tone": "up" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Bảng chỉ tiêu mẫu",
+      "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
+      "rows": [
+        ["GDP", "Q2/2026", "+7,25%", "Đang theo dõi"],
+        ["CPI", "6 tháng", "+3,10%", "Đang theo dõi"],
+        ["Bán lẻ", "6 tháng", "+8,40%", "Đang theo dõi"],
+        ["IIP", "6 tháng", "+6,70%", "Đang theo dõi"],
+        ["Xuất khẩu", "6 tháng", "+9,10%", "Mẫu"],
+        ["Nhập khẩu", "6 tháng", "+7,80%", "Mẫu"]
+      ]
+    }
+  ]
+}

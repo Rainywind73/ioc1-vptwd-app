@@ -31,11 +31,33 @@
     return { re: re, keys: keys, path: path };
   }
 
-  function createRouter(opts) {
-    var compiled = (opts.routes || []).map(function (r) {
-      var c = compile(r.path);
-      return { path: r.path, name: r.name, re: c.re, keys: c.keys };
+  function flatten(routes) {
+    var list = [];
+    (routes || []).forEach(function (route) {
+      var kids = route.children || [];
+      if (!kids.length) {
+        var own = compile(route.path);
+        list.push({ path: route.path, name: route.name, layout: null, re: own.re, keys: own.keys, rank: route.path.length });
+        return;
+      }
+      kids.forEach(function (child) {
+        var nested = compile(child.path);
+        list.push({
+          path: child.path,
+          name: child.name,
+          layout: route.name,
+          re: nested.re,
+          keys: nested.keys,
+          rank: child.path.length + 1
+        });
+      });
     });
+    list.sort(function (a, b) { return b.rank - a.rank; });
+    return list;
+  }
+
+  function createRouter(opts) {
+    var compiled = flatten(opts.routes);
 
     function match(raw) {
       for (var i = 0; i < compiled.length; i++) {
@@ -46,10 +68,10 @@
           for (var k = 0; k < r.keys.length; k++) {
             params[r.keys[k]] = decodeURIComponent(m[k + 1]);
           }
-          return { path: r.path, name: r.name, params: params, raw: raw };
+          return { path: r.path, name: r.name, layout: r.layout, params: params, raw: raw };
         }
       }
-      return { path: "/404", name: "not-found", params: {}, raw: raw };
+      return { path: "/404", name: "not-found", layout: null, params: {}, raw: raw };
     }
 
     function resolve() {

@@ -1,0 +1,20 @@
+{
+  "code": "SES",
+  "hash": "#/socio-economic",
+  "title": "Chỉ tiêu kinh tế - xã hội",
+  "shippedAt": "2026-09-23T06:04:00Z",
+  "base": "44d611c",
+  "surface": [
+    "KPI mẫu GDP +7,25%",
+    "bảng chỉ tiêu mẫu",
+    "không khóa PARTY RES OPS HDP MAE MON"
+  ],
+  "files": {
+    "app/index.html": "57000164e6fdcca8abdb6bbb470604ed3246d8b8393eac8da560a4387899eae6",
+    "app/css/app.css": "7e5f7b9bee32ce849cb825fc45c087339810bcff8478f133a573ddf1daaa1291",
+    "app/js/app.js": "9dea256ddab68352e19e126f4233ba8527646454a3c2dcc0171aa6d5a7970c82",
+    "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
+    "app/data/mock/boot.json": "ee7e369518668084ebd706841fb8375926b8c933a800c5036b6655910021b689",
+    "app/data/mock/ses.json": "ce43feefb0bf33df937faa0c7adf1703250093c421d0c49184c61ec2d18ad204"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "route": "mae",
+  "code": "MAE",
+  "hash": "#/nnmt",
+  "h1": "Thông tin Nông nghiệp và Môi trường",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "children": [
+    {
+      "name": "mae-index",
+      "hash": "#/nnmt",
+      "label": "Tổng quan",
+      "blocks": [
+        {
+          "type": "empty",
+          "title": "Hệ thống này chưa được cấu hình đúng",
+          "body": "Tuyến cha #/nnmt. Vui lòng liên hệ quản trị viên. Không nhúng trang maeinfo và không gọi API nguồn."
+        }
+      ]
+    },
+    {
+      "name": "mae-info",
+      "hash": "#/nnmt/info",
+      "label": "Dữ liệu NN-MT",
+      "blocks": [
+        {
+          "type": "empty",
+          "title": "Chưa có dữ liệu NN-MT",
+          "body": "Tuyến con #/nnmt/info nằm trong layout MAE. Không có số liệu mẫu và không có iframe."
+        }
+      ]
+    },
+    {
+      "name": "mae-link",
+      "hash": "#/linked/mae-info",
+      "label": "Liên kết",
+      "blocks": [
+        {
+          "type": "empty",
+          "title": "Liên kết chưa được cấu hình",
+          "body": "Hash cũ #/linked/mae-info vẫn mở trong cùng layout. Không chuyển sang maeinfo."
+        }
+      ]
+    }
+  ]
+}

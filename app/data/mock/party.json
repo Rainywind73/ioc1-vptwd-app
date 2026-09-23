@@ -1,0 +1,30 @@
+{
+  "route": "party",
+  "code": "PARTY",
+  "hash": "#/party-building",
+  "h1": "Dữ liệu Đảng viên",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "Đảng viên", "value": "4.862.000", "note": "khớp ô trang chủ", "tone": "" },
+        { "label": "Tổ chức Đảng", "value": "206.400", "note": "khớp ô trang chủ", "tone": "" },
+        { "label": "Kết nạp mẫu", "value": "12.400", "note": "năm mẫu", "tone": "up" },
+        { "label": "Tổ chức mới", "value": "860", "note": "năm mẫu", "tone": "up" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Cơ cấu mẫu",
+      "columns": ["Nhóm", "Số lượng mẫu", "Tỷ lệ"],
+      "rows": [
+        ["Đảng viên nữ", "1.720.000", "35%"],
+        ["Dưới 40 tuổi", "1.460.000", "30%"],
+        ["Chi bộ cơ sở", "168.200", "—"],
+        ["Đảng bộ cấp trên", "38.200", "—"]
+      ]
+    }
+  ]
+}

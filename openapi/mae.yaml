@@ -1,0 +1,6 @@
+openapi: 3.0.3
+info:
+  title: MAE mock
+  version: "0"
+  description: DỮ LIỆU MẪU. Không gọi API nguồn.
+paths: {}

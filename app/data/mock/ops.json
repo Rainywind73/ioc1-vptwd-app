@@ -1,0 +1,30 @@
+{
+  "route": "ops",
+  "code": "OPS",
+  "hash": "#/operation-management",
+  "h1": "Điều hành tác nghiệp",
+  "timezone": "Asia/Ho_Chi_Minh",
+  "disclaimer": "DỮ LIỆU MẪU",
+  "blocks": [
+    {
+      "type": "kpis",
+      "items": [
+        { "label": "Văn bản đi", "value": "4.120", "note": "▼ 9,40% kỳ trước", "tone": "down" },
+        { "label": "Văn bản đến", "value": "25.600", "note": "▼ 8,15% kỳ trước", "tone": "down" },
+        { "label": "Đúng hạn", "value": "91%", "note": "mẫu", "tone": "up" },
+        { "label": "Quá hạn", "value": "86", "note": "hồ sơ mẫu", "tone": "down" }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Hàng đợi mẫu",
+      "columns": ["Mã mẫu", "Loại", "Đơn vị", "Hạn"],
+      "rows": [
+        ["VB-MẪU-001", "Đi", "Văn phòng demo", "Trong hạn"],
+        ["VB-MẪU-002", "Đến", "Vụ demo", "Trong hạn"],
+        ["VB-MẪU-003", "Đến", "Cơ quan demo", "Quá hạn"],
+        ["VB-MẪU-004", "Đi", "Đơn vị demo", "Trong hạn"]
+      ]
+    }
+  ]
+}

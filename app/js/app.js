@@ -10,6 +10,7 @@
   var router = null;
   var DATA = null;
   var HOME = null;
+  var MODS = {};
   var pop = null;
   var docBound = false;
   function closePop() {
@@ -128,7 +129,7 @@
     var items = navItems();
     for (var i = 0; i < items.length; i++) {
       if (items[i].hash === hash) return items[i];
-      if (items[i].code === "MAE" && (raw === "/nnmt" || raw === "/linked/mae-info")) return items[i];
+      if (items[i].code === "MAE" && (raw === "/nnmt" || raw.indexOf("/nnmt/") === 0 || raw === "/linked/mae-info")) return items[i];
       if (items[i].code === "ADMIN" && raw.indexOf("/admin/") === 0) return items[i];
     }
     return null;
@@ -138,11 +139,13 @@
     var s = session();
     var items = navItems();
     var links = items.map(function (n, i) {
-      var cur = n.hash === activeHash || (n.code === "ADMIN" && activeHash.indexOf("#/admin/") === 0) || (n.code === "MAE" && (activeHash === "#/nnmt" || activeHash === "#/linked/mae-info"));
+      var maeOn = n.code === "MAE" && (activeHash === "#/nnmt" || activeHash.indexOf("#/nnmt/") === 0 || activeHash === "#/linked/mae-info");
+      var cur = n.hash === activeHash || (n.code === "ADMIN" && activeHash.indexOf("#/admin/") === 0) || maeOn;
       return '<a href="' + esc(n.hash) + '" title="' + esc(n.label) + '"' + (cur ? ' aria-current="page"' : "") + ">" + icon(ICONS[i] || "home") + "</a>";
     }).join("");
     var mobile = items.map(function (n) {
-      var cur = n.hash === activeHash;
+      var maeOn = n.code === "MAE" && (activeHash === "#/nnmt" || activeHash.indexOf("#/nnmt/") === 0 || activeHash === "#/linked/mae-info");
+      var cur = n.hash === activeHash || maeOn;
       return '<a href="' + esc(n.hash) + '"' + (cur ? ' aria-current="page"' : "") + ">" + esc(n.label) + "</a>";
     }).join("");
     var tb = DATA.topbar;
@@ -250,6 +253,72 @@
         '<div class="ov-grid">' + cards + "</div>" +
       "</main>" +
       '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>'
+    );
+  }
+
+  function renderBlock(b) {
+    if (!b) return "";
+    if (b.type === "kpis") {
+      return '<div class="kpi-row">' + (b.items || []).map(function (it) {
+        return '<article class="kpi"><span>' + esc(it.label) + '</span><strong class="' + esc(it.tone || "") + '">' + esc(it.value) + "</strong><small>" + esc(it.note || "") + "</small></article>";
+      }).join("") + "</div>";
+    }
+    if (b.type === "table") {
+      var head = "<tr>" + (b.columns || []).map(function (c) { return "<th>" + esc(c) + "</th>"; }).join("") + "</tr>";
+      var body = (b.rows || []).map(function (row) {
+        return "<tr>" + row.map(function (cell) { return "<td>" + esc(cell) + "</td>"; }).join("") + "</tr>";
+      }).join("");
+      return '<section class="panel"><h2>' + esc(b.title) + '</h2><div class="table-wrap"><table>' + head + body + "</table></div></section>";
+    }
+    if (b.type === "bars") {
+      return '<section class="panel"><h2>' + esc(b.title) + "</h2>" + (b.items || []).map(function (it) {
+        var pct = Math.max(0, Math.min(100, Number(it.pct) || 0));
+        return '<div class="bar-row"><div><span>' + esc(it.label) + "</span><b>" + esc(it.value) + '</b></div><div class="bar" aria-hidden="true"><i style="width:' + pct + '%"></i></div></div>';
+      }).join("") + "</section>";
+    }
+    if (b.type === "empty") {
+      return '<section class="empty"><h2>' + esc(b.title) + "</h2><p>" + esc(b.body) + "</p></section>";
+    }
+    return "";
+  }
+
+  function pageModule(key, hash) {
+    var M = MODS[key];
+    if (!M) {
+      return header(hash || "#/") + '<main class="shell"><p class="asof">Không tải được dữ liệu mẫu.</p></main>';
+    }
+    return (
+      header(hash || M.hash) +
+      '<main class="modpage">' +
+        '<p class="kicker">' + esc(M.code) + "</p>" +
+        "<h1>" + esc(M.h1) + "</h1>" +
+        '<p class="asof">' + esc(M.disclaimer || "DỮ LIỆU MẪU") + "</p>" +
+        (M.blocks || []).map(renderBlock).join("") +
+      "</main>"
+    );
+  }
+
+  function pageMae(found) {
+    var M = MODS.mae || {};
+    var kids = M.children || [];
+    var child = null;
+    for (var i = 0; i < kids.length; i++) {
+      if (kids[i].name === found.name) child = kids[i];
+    }
+    if (!child) child = kids[0] || { label: "NN-MT", blocks: M.blocks || [] };
+    var tabs = kids.map(function (k) {
+      var on = k.name === found.name ? ' aria-current="page"' : "";
+      return '<a href="' + esc(k.hash) + '"' + on + ">" + esc(k.label) + "</a>";
+    }).join("");
+    return (
+      header("#" + found.raw) +
+      '<main class="modpage">' +
+        '<p class="kicker">' + esc(M.code || "MAE") + "</p>" +
+        "<h1>" + esc(M.h1 || "Thông tin Nông nghiệp và Môi trường") + "</h1>" +
+        '<p class="asof">' + esc(M.disclaimer || "DỮ LIỆU MẪU") + "</p>" +
+        '<nav class="subnav" aria-label="Tuyến MAE">' + tabs + "</nav>" +
+        '<div class="outlet">' + (child.blocks || []).map(renderBlock).join("") + "</div>" +
+      "</main>"
     );
   }
 
@@ -517,6 +586,8 @@
       return;
     }
     if (found.name === "shell") root.innerHTML = pageShell();
+    else if (found.layout === "mae") root.innerHTML = pageMae(found);
+    else if (MODS[found.name]) root.innerHTML = pageModule(found.name);
     else root.innerHTML = pageClosed(found);
     bindShell();
   }
@@ -526,14 +597,21 @@
       routes: [
         { path: "/login", name: "login" },
         { path: "/", name: "shell" },
-        { path: "/socio-economic", name: "closed" },
-        { path: "/operation-management", name: "closed" },
-        { path: "/hundred-day-plan", name: "closed" },
-        { path: "/monitoring-resolution", name: "closed" },
-        { path: "/party-building", name: "closed" },
-        { path: "/nnmt", name: "closed" },
-        { path: "/linked/mae-info", name: "closed" },
-        { path: "/system-monitoring", name: "closed" },
+        { path: "/socio-economic", name: "ses" },
+        { path: "/operation-management", name: "ops" },
+        { path: "/hundred-day-plan", name: "hdp" },
+        { path: "/monitoring-resolution", name: "res" },
+        { path: "/party-building", name: "party" },
+        {
+          path: "/nnmt",
+          name: "mae",
+          children: [
+            { path: "/nnmt", name: "mae-index" },
+            { path: "/nnmt/info", name: "mae-info" },
+            { path: "/linked/mae-info", name: "mae-link" }
+          ]
+        },
+        { path: "/system-monitoring", name: "mon" },
         { path: "/admin/:slug", name: "closed" },
         { path: "/profile/profile-update", name: "closed" },
         { path: "/login-history", name: "closed" },
@@ -563,7 +641,17 @@
       .then(function (data) {
         return fetch("data/mock/home.json", { cache: "no-store" })
           .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (home) { return { boot: data, home: home }; });
+          .then(function (home) {
+            var names = ["ses", "party", "res", "ops", "hdp", "mae", "mon"];
+            return Promise.all(names.map(function (name) {
+              return fetch("data/mock/" + name + ".json", { cache: "no-store" })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .catch(function () { return null; });
+            })).then(function (mods) {
+              mods.forEach(function (mod) { if (mod && mod.route) MODS[mod.route] = mod; });
+              return { boot: data, home: home };
+            });
+          });
       })
       .then(function (pack) {
         HOME = pack.home;

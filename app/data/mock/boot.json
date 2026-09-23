@@ -73,50 +73,50 @@
       "code": "SES",
       "label": "Kinh tế - Xã hội",
       "hash": "#/socio-economic",
-      "open": false,
-      "blurb": "Chưa mở lượt."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "OPS",
       "label": "Điều hành tác nghiệp",
       "hash": "#/operation-management",
-      "open": false,
-      "blurb": "Chưa mở lượt."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "HDP",
       "label": "Theo dõi kế hoạch 100 ngày",
       "hash": "#/hundred-day-plan",
-      "open": false,
-      "blurb": "Chưa mở lượt. Một màn, chưa tách tuyến."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "RES",
       "label": "Theo dõi nghị quyết",
       "hash": "#/monitoring-resolution",
-      "open": false,
-      "blurb": "Chưa mở lượt."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "PARTY",
       "label": "Dữ liệu Đảng viên",
       "hash": "#/party-building",
-      "open": false,
-      "blurb": "Chưa mở lượt."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "MAE",
       "label": "Thông tin Nông nghiệp và Môi trường",
       "hash": "#/nnmt",
-      "open": false,
-      "blurb": "Chưa mở lượt. Nguồn đánh dấu chưa cấu hình."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "MON",
       "label": "Giám sát hệ thống",
       "hash": "#/system-monitoring",
-      "open": false,
-      "blurb": "Chưa mở lượt."
+      "open": true,
+      "blurb": "Đã mở. Dữ liệu mẫu."
     },
     {
       "code": "ADMIN",
