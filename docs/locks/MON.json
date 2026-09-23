@@ -1,0 +1,12 @@
+{
+  "code": "MON",
+  "hash": "#/system-monitoring",
+  "title": "Giám sát ứng dụng và hệ thống",
+  "shippedAt": "2026-09-23T06:25:00Z",
+  "base": "7b8d129bd1c842f450bb10ddb70e910a3d2bcbf5",
+  "surface": ["3 lối tắt", "2 đạt, 1 chậm", "nhật ký mẫu"],
+  "files": {
+    "app/js/app.js": "cbc1334c914c72b9b00dc4e73c81b50278cc164be306e400b181f8cec494f50d",
+    "app/data/mock/mon.json": "c7de3789f7e3aa7ba1c262a1ef7c0366058eb89086cc2b8ebfe54ac826c47036"
+  }
+}

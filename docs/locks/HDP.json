@@ -1,0 +1,12 @@
+{
+  "code": "HDP",
+  "hash": "#/hundred-day-plan",
+  "title": "Kế hoạch 100 ngày",
+  "shippedAt": "2026-09-23T06:25:00Z",
+  "base": "7b8d129bd1c842f450bb10ddb70e910a3d2bcbf5",
+  "surface": ["một màn", "18 đầu việc mẫu", "chưa tách HDP-P và HDP-D"],
+  "files": {
+    "app/js/app.js": "cbc1334c914c72b9b00dc4e73c81b50278cc164be306e400b181f8cec494f50d",
+    "app/data/mock/hdp.json": "d30469755a57d788814e754b83ac0b0839cf5daed48178f78f6379893ddfc820"
+  }
+}

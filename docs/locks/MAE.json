@@ -1,0 +1,14 @@
+{
+  "code": "MAE",
+  "hash": "#/nnmt",
+  "also": ["#/nnmt/info", "#/linked/mae-info"],
+  "title": "Nông nghiệp và Môi trường",
+  "shippedAt": "2026-09-23T06:25:00Z",
+  "base": "7b8d129bd1c842f450bb10ddb70e910a3d2bcbf5",
+  "surface": ["layout cha và 3 tuyến con", "empty-state", "không VNLIS"],
+  "files": {
+    "app/js/app.js": "cbc1334c914c72b9b00dc4e73c81b50278cc164be306e400b181f8cec494f50d",
+    "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
+    "app/data/mock/mae.json": "2ea64028fa0514d67d1b34e2851302560b942614585a789f2823e137613113ff"
+  }
+}
