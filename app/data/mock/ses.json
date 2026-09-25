@@ -3,16 +3,31 @@
   "code": "SES",
   "hash": "#/socio-economic",
   "h1": "Chỉ tiêu kinh tế - xã hội",
+  "lead": "Trang thứ cấp. Số khớp ô trang chủ. Phần sau tường đăng nhập nguồn chưa quan sát được.",
   "timezone": "Asia/Ho_Chi_Minh",
   "disclaimer": "DỮ LIỆU MẪU",
   "blocks": [
     {
+      "type": "chips",
+      "items": ["Cả nước", "Q2/2026", "So với cùng kỳ"]
+    },
+    {
       "type": "kpis",
       "items": [
-        { "label": "GDP cùng kỳ", "value": "+7,25%", "note": "Q2/2026 · mẫu", "tone": "up" },
+        { "label": "GDP cùng kỳ", "value": "+7,25%", "note": "ô trang chủ · Q2/2026", "tone": "up" },
         { "label": "CPI", "value": "+3,10%", "note": "ước mẫu", "tone": "up" },
         { "label": "Bán lẻ", "value": "+8,40%", "note": "ước mẫu", "tone": "up" },
         { "label": "IIP", "value": "+6,70%", "note": "ước mẫu", "tone": "up" }
+      ]
+    },
+    {
+      "type": "bars",
+      "title": "Mức mẫu cùng kỳ",
+      "items": [
+        { "label": "GDP", "value": "+7,25%", "pct": 72 },
+        { "label": "CPI", "value": "+3,10%", "pct": 31 },
+        { "label": "Bán lẻ", "value": "+8,40%", "pct": 84 },
+        { "label": "IIP", "value": "+6,70%", "pct": 67 }
       ]
     },
     {
@@ -30,7 +45,8 @@
                 ["GDP", "Q2/2026", "+7,25%", "Đang theo dõi"],
                 ["IIP", "6 tháng", "+6,70%", "Đang theo dõi"],
                 ["Nông nghiệp", "6 tháng", "+3,20%", "Mẫu"],
-                ["Công nghiệp", "6 tháng", "+7,10%", "Mẫu"]
+                ["Công nghiệp", "6 tháng", "+7,10%", "Mẫu"],
+                ["Dịch vụ", "6 tháng", "+7,80%", "Mẫu"]
               ]
             }
           ]
@@ -46,7 +62,8 @@
               "rows": [
                 ["CPI", "6 tháng", "+3,10%", "Mẫu"],
                 ["Lương thực", "6 tháng", "+2,40%", "Mẫu"],
-                ["Nhà ở", "6 tháng", "+4,10%", "Mẫu"]
+                ["Nhà ở", "6 tháng", "+4,10%", "Mẫu"],
+                ["Giao thông", "6 tháng", "+1,20%", "Mẫu"]
               ]
             }
           ]

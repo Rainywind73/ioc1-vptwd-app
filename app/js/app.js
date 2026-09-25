@@ -289,6 +289,11 @@
       }).join("");
       return '<div class="mtabs" data-mtabs><div class="mtabs-nav">' + nav + "</div>" + panels + "</div>";
     }
+    if (b.type === "chips") {
+      return '<div class="chips">' + (b.items || []).map(function (it) {
+        return "<span>" + esc(it) + "</span>";
+      }).join("") + "</div>";
+    }
     if (b.type === "links") {
       return '<div class="jump-row">' + (b.items || []).map(function (it) {
         return '<a class="jump" href="' + esc(it.href) + '"><strong>' + esc(it.label) + "</strong><small>" + esc(it.note || "") + "</small></a>";
@@ -308,6 +313,7 @@
         '<p class="kicker">' + esc(M.code) + "</p>" +
         "<h1>" + esc(M.h1) + "</h1>" +
         '<p class="asof">' + esc(M.disclaimer || "DỮ LIỆU MẪU") + "</p>" +
+        (M.lead ? '<p class="lead">' + esc(M.lead) + "</p>" : "") +
         (M.blocks || []).map(renderBlock).join("") +
       "</main>"
     );

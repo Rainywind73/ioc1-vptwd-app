@@ -864,3 +864,20 @@ html[data-theme="dark"] .jump {
 }
 html[data-theme="dark"] .mtabs-nav button[aria-pressed="true"] { background: #b9000e; border-color: #b9000e; color: #fff; }
 html[data-theme="dark"] .jump small { color: #a8b3c4; }
+.lead { margin: -6px 0 14px; color: #64748b; font-size: 13px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.chips span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+}
+html[data-theme="dark"] .lead { color: #a8b3c4; }
+html[data-theme="dark"] .chips span {
+  background: #151c28;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #e7edf5;
+}
