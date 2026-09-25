@@ -6,13 +6,13 @@
   "base": "f52c5aadcbfff8155377b861570a6eeead84d73c",
   "surface": [
     "11 thẻ",
-    "bản đồ 34 tỉnh, ranh giới mở",
+    "bản đồ 34 tỉnh tô theo mức tăng của từng dòng",
     "số GRDP mẫu, không phải Viettel Maps"
   ],
   "files": {
-    "app/index.html": "5938096d9f194f3b0eadd5dfaff30a7a596c359b94d34175052abefad8c7f83c",
-    "app/css/app.css": "3238bb555c2ecdad7778e1a6694324b30f4e570e63e91b13ab90dd69dbcd82f5",
-    "app/js/app.js": "0c372403867dcce76eda94774f466e80605fbfb88aff3243a1d3990aeb7aee6a",
+    "app/index.html": "a87232ca34a8dd3a22999bcb490849d031c45efadfaec8d20f258c35851816c1",
+    "app/css/app.css": "6dedeb4c3c5360004e8a120aaf1e2a2360be6239f4aec18ee6305f5c06e881e8",
+    "app/js/app.js": "bb6dea00fbb86641bbc1dbd21f5c1a09c2ede289df348892de26900c47e7fea6",
     "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
     "app/data/mock/boot.json": "ee7e369518668084ebd706841fb8375926b8c933a800c5036b6655910021b689",
     "app/data/mock/ses.json": "8f5afdcdc4c7717326f865e5fe7ce977cda339dab44cc614e01f0d43c4076245",

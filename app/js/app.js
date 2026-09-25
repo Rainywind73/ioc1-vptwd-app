@@ -620,6 +620,19 @@
         el.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
+    var grdp = document.querySelector(".ses-grdp");
+    if (grdp) {
+      function mark(ma) {
+        Array.prototype.forEach.call(grdp.querySelectorAll("[data-tinh]"), function (el) {
+          el.classList.toggle("is-on", !!ma && el.getAttribute("data-tinh") === ma);
+        });
+      }
+      grdp.addEventListener("mouseover", function (e) {
+        var el = e.target.closest ? e.target.closest("[data-tinh]") : null;
+        mark(el ? el.getAttribute("data-tinh") : "");
+      });
+      grdp.addEventListener("mouseleave", function () { mark(""); });
+    }
     bindTheme();
   }
 
@@ -682,7 +695,8 @@
     }).join("");
     var g = M.grdp || {};
     var rows = (g.rows || []).map(function (row, i) {
-      return "<tr><td>" + (i + 1) + "</td><td>" + esc(row.name) + "</td><td>" + esc(row.value) + "</td><td>" + esc(row.delta) + "</td></tr>";
+      var band = sesBand(row.delta);
+      return '<tr data-tinh="' + esc(row.ma || "") + '"><td>' + (i + 1) + "</td><td>" + esc(row.name) + "</td><td>" + esc(row.value) + '</td><td><span class="delta ' + band + '">' + esc(row.delta) + "</span></td></tr>";
     }).join("");
     return (
       header("#/socio-economic") +
@@ -714,13 +728,13 @@
     );
   }
 
-  function sesFill(delta) {
-    if (!delta) return "#e5e7eb";
+  function sesBand(delta) {
+    if (!delta) return "none";
     var n = Number(String(delta).replace("%", "").replace(/\s/g, "").replace(",", "."));
-    if (isNaN(n)) return "#e5e7eb";
-    if (n > 10) return "#ef4444";
-    if (n >= 8) return "#fb923c";
-    return "#4ade80";
+    if (isNaN(n)) return "none";
+    if (n > 10) return "hi";
+    if (n >= 8) return "mid";
+    return "lo";
   }
 
   function sesMap(rows) {
@@ -767,7 +781,7 @@
         }).join("") + "Z";
       }).join("");
       var title = f.properties.ten + (row ? " " + row.delta : "");
-      return '<path d="' + d + '" fill="' + sesFill(row && row.delta) + '" stroke="#fff" stroke-width="0.6"><title>' + esc(title) + "</title></path>";
+      return '<path data-tinh="' + esc(f.properties.ma) + '" class="tinh ' + sesBand(row && row.delta) + '" d="' + d + '" stroke="#fff" stroke-width="0.7"><title>' + esc(title) + "</title></path>";
     }).join("");
     return (
       '<div class="ses-map">' +

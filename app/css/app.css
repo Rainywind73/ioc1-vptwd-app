@@ -942,6 +942,23 @@ html[data-theme="dark"] .chips span {
   border-radius: 2px;
   margin: 0 4px 0 8px;
 }
+.ses-map path.tinh.hi { fill: #ef4444; }
+.ses-map path.tinh.mid { fill: #fb923c; }
+.ses-map path.tinh.lo { fill: #4ade80; }
+.ses-map path.tinh.none { fill: #e5e7eb; }
+.ses-map path.tinh.is-on { stroke: #111827; stroke-width: 1.6; }
+.delta {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+}
+.delta.hi { background: #fee2e2; color: #b91c1c; }
+.delta.mid { background: #ffedd5; color: #c2410c; }
+.delta.lo { background: #dcfce7; color: #15803d; }
+.delta.none { background: #f1f5f9; color: #64748b; }
+tr.is-on { background: #fff7ed; }
 .ses-map .legend i.hi { background: #ef4444; }
 .ses-map .legend i.mid { background: #fb923c; }
 .ses-map .legend i.lo { background: #4ade80; }
