@@ -2,89 +2,155 @@
   "route": "ses",
   "code": "SES",
   "hash": "#/socio-economic",
-  "h1": "Chỉ tiêu kinh tế - xã hội",
-  "lead": "Trang thứ cấp. Số khớp ô trang chủ. Phần sau tường đăng nhập nguồn chưa quan sát được.",
-  "timezone": "Asia/Ho_Chi_Minh",
-  "disclaimer": "DỮ LIỆU MẪU",
-  "blocks": [
+  "h1": "Báo cáo tình hình kinh tế - xã hội",
+  "disclaimer": "DỮ LIỆU MẪU — bố cục theo ảnh, số không chép từ ảnh",
+  "filters": { "period": "Tháng", "year": "2026" },
+  "sections": [
     {
-      "type": "chips",
-      "items": ["Cả nước", "Q2/2026", "So với cùng kỳ"]
-    },
-    {
-      "type": "kpis",
-      "items": [
-        { "label": "GDP cùng kỳ", "value": "+7,25%", "note": "ô trang chủ · Q2/2026", "tone": "up" },
-        { "label": "CPI", "value": "+3,10%", "note": "ước mẫu", "tone": "up" },
-        { "label": "Bán lẻ", "value": "+8,40%", "note": "ước mẫu", "tone": "up" },
-        { "label": "IIP", "value": "+6,70%", "note": "ước mẫu", "tone": "up" }
+      "no": "1",
+      "title": "Tăng trưởng và ổn định kinh tế vĩ mô",
+      "cols": 3,
+      "cards": [
+        {
+          "name": "Tổng sản phẩm trong nước (GDP)",
+          "value": "+7,25%",
+          "unit": "so cùng kỳ",
+          "notes": ["khớp ô trang chủ", "Q2/2026"],
+          "chart": "bar",
+          "series": [48, 72, 60, 55],
+          "link": "Xem GRDP các địa phương"
+        },
+        {
+          "name": "Chỉ số giá tiêu dùng (CPI)",
+          "value": "+3,10%",
+          "unit": "so cùng kỳ",
+          "notes": ["ước mẫu"],
+          "chart": "line",
+          "series": [30, 34, 40, 36, 33, 38],
+          "seriesB": [28, 30, 32, 31, 29, 33]
+        },
+        {
+          "name": "Chỉ số sản xuất công nghiệp (IIP)",
+          "value": "+6,70%",
+          "unit": "so cùng kỳ",
+          "notes": ["ước mẫu"],
+          "chart": "line",
+          "series": [40, 55, 48, 62, 58, 66],
+          "seriesB": [36, 42, 40, 44, 41, 45]
+        }
       ]
     },
     {
-      "type": "bars",
-      "title": "Mức mẫu cùng kỳ",
-      "items": [
-        { "label": "GDP", "value": "+7,25%", "pct": 72 },
-        { "label": "CPI", "value": "+3,10%", "pct": 31 },
-        { "label": "Bán lẻ", "value": "+8,40%", "pct": 84 },
-        { "label": "IIP", "value": "+6,70%", "pct": 67 }
+      "no": "2",
+      "title": "Thu, chi ngân sách nhà nước",
+      "cols": 2,
+      "cards": [
+        {
+          "name": "Thu ngân sách nhà nước",
+          "value": "120.000",
+          "unit": "tỷ đồng mẫu",
+          "notes": ["+5,00% so cùng kỳ"],
+          "chart": "line",
+          "series": [70, 50, 46, 48, 52, 49]
+        },
+        {
+          "name": "Chi ngân sách nhà nước",
+          "value": "180.000",
+          "unit": "tỷ đồng mẫu",
+          "notes": ["+4,00% so cùng kỳ"],
+          "chart": "line",
+          "series": [30, 34, 40, 55, 48, 52]
+        }
       ]
     },
     {
-      "type": "tabs",
-      "items": [
+      "no": "3",
+      "title": "Vốn đầu tư",
+      "cols": 2,
+      "cards": [
         {
-          "id": "grow",
-          "label": "Tăng trưởng",
-          "blocks": [
-            {
-              "type": "table",
-              "title": "Tăng trưởng mẫu",
-              "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
-              "rows": [
-                ["GDP", "Q2/2026", "+7,25%", "Đang theo dõi"],
-                ["IIP", "6 tháng", "+6,70%", "Đang theo dõi"],
-                ["Nông nghiệp", "6 tháng", "+3,20%", "Mẫu"],
-                ["Công nghiệp", "6 tháng", "+7,10%", "Mẫu"],
-                ["Dịch vụ", "6 tháng", "+7,80%", "Mẫu"]
-              ]
-            }
-          ]
+          "name": "Vốn đầu tư thực hiện từ nguồn NSNN",
+          "value": "80.000",
+          "unit": "tỷ đồng mẫu",
+          "notes": ["+6,00% so cùng kỳ"],
+          "chart": "line",
+          "series": [20, 28, 36, 44, 52, 60]
         },
         {
-          "id": "price",
-          "label": "Giá",
-          "blocks": [
-            {
-              "type": "table",
-              "title": "Giá mẫu",
-              "columns": ["Nhóm", "Kỳ", "Giá trị mẫu", "Trạng thái"],
-              "rows": [
-                ["CPI", "6 tháng", "+3,10%", "Mẫu"],
-                ["Lương thực", "6 tháng", "+2,40%", "Mẫu"],
-                ["Nhà ở", "6 tháng", "+4,10%", "Mẫu"],
-                ["Giao thông", "6 tháng", "+1,20%", "Mẫu"]
-              ]
-            }
-          ]
+          "name": "Vốn đầu tư trực tiếp nước ngoài",
+          "value": "1,20",
+          "unit": "tỷ USD mẫu",
+          "notes": ["+5,50% so cùng kỳ"],
+          "chart": "line",
+          "series": [24, 40, 30, 48, 36, 28]
+        }
+      ]
+    },
+    {
+      "no": "4",
+      "title": "Xuất khẩu - Nhập khẩu hàng hóa",
+      "cols": 2,
+      "cards": [
+        {
+          "name": "Xuất khẩu hàng hóa",
+          "value": "40,0",
+          "unit": "tỷ USD mẫu",
+          "notes": ["+4,20% so cùng kỳ"],
+          "chart": "line",
+          "series": [32, 30, 38, 42, 46, 50]
         },
         {
-          "id": "trade",
-          "label": "Thương mại",
-          "blocks": [
-            {
-              "type": "table",
-              "title": "Thương mại mẫu",
-              "columns": ["Chỉ tiêu", "Kỳ", "Giá trị mẫu", "Trạng thái"],
-              "rows": [
-                ["Bán lẻ", "6 tháng", "+8,40%", "Mẫu"],
-                ["Xuất khẩu", "6 tháng", "+9,10%", "Mẫu"],
-                ["Nhập khẩu", "6 tháng", "+7,80%", "Mẫu"]
-              ]
-            }
-          ]
+          "name": "Nhập khẩu hàng hóa",
+          "value": "42,0",
+          "unit": "tỷ USD mẫu",
+          "notes": ["+3,80% so cùng kỳ"],
+          "chart": "line",
+          "series": [36, 34, 44, 48, 52, 49]
+        }
+      ]
+    },
+    {
+      "no": "5",
+      "title": "Giải ngân vốn đầu tư công",
+      "cols": 2,
+      "cards": [
+        {
+          "name": "Giải ngân vốn đầu tư công",
+          "value": "60.000",
+          "unit": "tỷ đồng mẫu",
+          "notes": ["+5,10% so cùng kỳ"],
+          "chart": "line",
+          "series": [22, 26, 40, 58, 36, 44]
+        }
+      ]
+    },
+    {
+      "no": "6",
+      "title": "Vốn đăng ký doanh nghiệp",
+      "cols": 2,
+      "cards": [
+        {
+          "name": "Vốn doanh nghiệp đăng ký mới",
+          "value": "150.000",
+          "unit": "tỷ đồng mẫu",
+          "notes": ["+4,40% so cùng kỳ"],
+          "chart": "line",
+          "series": [28, 36, 42, 55, 40, 48]
         }
       ]
     }
-  ]
+  ],
+  "grdp": {
+    "title": "Tổng sản phẩm trên địa bàn tỉnh hoặc thành phố trực thuộc TW (chỉ số GRDP)",
+    "period": "Quý 2",
+    "year": "2026",
+    "rows": [
+      { "name": "Hà Nội", "value": "80.000", "delta": "+6,0%" },
+      { "name": "Hải Phòng", "value": "30.000", "delta": "+5,5%" },
+      { "name": "Đà Nẵng", "value": "20.000", "delta": "+5,0%" },
+      { "name": "TP. Hồ Chí Minh", "value": "90.000", "delta": "+6,5%" },
+      { "name": "Cần Thơ", "value": "15.000", "delta": "+4,5%" },
+      { "name": "Nghệ An", "value": "18.000", "delta": "+4,8%" }
+    ]
+  }
 }

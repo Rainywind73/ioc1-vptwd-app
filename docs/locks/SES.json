@@ -1,20 +1,20 @@
 {
   "code": "SES",
   "hash": "#/socio-economic",
-  "title": "Chỉ tiêu kinh tế - xã hội",
-  "shippedAt": "2026-09-25T07:47:00Z",
-  "base": "6d70918c99396366e8a00f4819ee9f63d0eb1911",
+  "title": "Báo cáo tình hình kinh tế - xã hội",
+  "shippedAt": "2026-09-25T09:19:00Z",
+  "base": "3e117a2b973a84d22ba85577ee26db39fa557c48",
   "surface": [
-    "trang thứ cấp",
+    "11 thẻ trong 6 nhóm",
     "GDP mẫu +7,25%",
-    "bộ lọc kỳ, thanh mức, ba tab"
+    "khối GRDP: bảng địa phương và sơ đồ mẫu"
   ],
   "files": {
     "app/index.html": "57000164e6fdcca8abdb6bbb470604ed3246d8b8393eac8da560a4387899eae6",
-    "app/css/app.css": "9b1bcb3ef6890807aab910baad71203ce595f8bb88fdffd88194c38f6387fb64",
-    "app/js/app.js": "67798079f31594e0d3aa5349b9d975c7a3ded4f0dcea2b612555943fc015ce1f",
+    "app/css/app.css": "6715f3fd2ffde931c9a2e323af1d20c5b637ce43bd7623016cdc13d7f4322951",
+    "app/js/app.js": "507e76f65a98d4a8606cccb80acd75c2a82ae9f4609fee6ddf3b988709924cb7",
     "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
     "app/data/mock/boot.json": "ee7e369518668084ebd706841fb8375926b8c933a800c5036b6655910021b689",
-    "app/data/mock/ses.json": "f4183929080ab7e482151daa849e326c23fa0646d4810055e5788d772957cfbe"
+    "app/data/mock/ses.json": "cdbc8656653c749a4fa428729d62e674811385f697b19c10f93ecb3bdbaf7288"
   }
 }

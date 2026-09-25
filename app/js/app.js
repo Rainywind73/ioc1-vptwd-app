@@ -601,7 +601,116 @@
         });
       });
     });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-ses-mode]"), function (btn) {
+      btn.addEventListener("click", function () {
+        Array.prototype.forEach.call(btn.parentNode.querySelectorAll("[data-ses-mode]"), function (b) {
+          b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+        });
+        var note = document.getElementById("ses-filter-note");
+        if (note) note.textContent = "Đang xem mẫu · " + btn.textContent;
+      });
+    });
+    var grdpJump = document.getElementById("jump-grdp");
+    if (grdpJump) {
+      grdpJump.addEventListener("click", function (e) {
+        var el = document.getElementById("grdp");
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
     bindTheme();
+  }
+
+  function sparkLine(series, seriesB) {
+    var w = 280;
+    var h = 78;
+    function pts(arr) {
+      var n = arr.length || 1;
+      return arr.map(function (v, i) {
+        var x = n === 1 ? 0 : (i / (n - 1)) * w;
+        var y = h - 6 - (Math.max(0, Math.min(100, Number(v) || 0)) / 100) * (h - 12);
+        return x.toFixed(1) + "," + y.toFixed(1);
+      }).join(" ");
+    }
+    var second = seriesB && seriesB.length
+      ? '<polyline fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 3" points="' + pts(seriesB) + '"/>'
+      : "";
+    return '<svg class="spark" viewBox="0 0 ' + w + " " + h + '" aria-hidden="true"><polyline fill="none" stroke="#16a34a" stroke-width="2" points="' + pts(series || []) + '"/>' + second + "</svg>";
+  }
+
+  function sparkBars(series) {
+    var n = series.length || 1;
+    return '<div class="bars-mini">' + series.map(function (v) {
+      var h = Math.max(8, Math.min(100, Number(v) || 0));
+      return '<i style="height:' + h + '%"></i>';
+    }).join("") + "</div>";
+  }
+
+  function sesCard(card) {
+    var chart = card.chart === "bar"
+      ? sparkBars(card.series || [])
+      : sparkLine(card.series || [], card.seriesB);
+    var notes = (card.notes || []).map(function (n) { return "<small>" + esc(n) + "</small>"; }).join("");
+    var link = card.link
+      ? '<a id="jump-grdp" href="#grdp">' + esc(card.link) + "</a>"
+      : "";
+    return (
+      '<article class="ses-card">' +
+        "<h3>" + esc(card.name) + "</h3>" +
+        '<p class="ses-val">' + esc(card.value) + " <span>" + esc(card.unit || "") + "</span></p>" +
+        '<p class="ses-notes">' + notes + "</p>" +
+        chart +
+        link +
+      "</article>"
+    );
+  }
+
+  function pageSes() {
+    var M = MODS.ses;
+    var f = M.filters || {};
+    var sections = (M.sections || []).map(function (sec) {
+      return (
+        '<section class="ses-sec">' +
+          '<h2><span>' + esc(sec.no) + "</span> " + esc(sec.title) + "</h2>" +
+          '<div class="ses-grid cols-' + esc(String(sec.cols || 2)) + '">' +
+            (sec.cards || []).map(sesCard).join("") +
+          "</div>" +
+        "</section>"
+      );
+    }).join("");
+    var g = M.grdp || {};
+    var rows = (g.rows || []).map(function (row, i) {
+      return "<tr><td>" + (i + 1) + "</td><td>" + esc(row.name) + "</td><td>" + esc(row.value) + "</td><td>" + esc(row.delta) + "</td></tr>";
+    }).join("");
+    return (
+      header("#/socio-economic") +
+      '<main class="modpage ses-report">' +
+        '<p class="kicker">SES</p>' +
+        "<h1>" + esc(M.h1) + "</h1>" +
+        '<p class="asof">' + esc(M.disclaimer || "DỮ LIỆU MẪU") + "</p>" +
+        '<div class="ses-tools">' +
+          "<label>Kỳ báo cáo <select disabled><option>" + esc(f.period || "Tháng") + "</option></select></label>" +
+          "<label>Năm <select disabled><option>" + esc(f.year || "2026") + "</option></select></label>" +
+          '<div class="ses-modes">' +
+            '<button type="button" data-ses-mode aria-pressed="true">Lũy kế</button>' +
+            '<button type="button" data-ses-mode aria-pressed="false">Theo kỳ</button>' +
+          "</div>" +
+          '<span id="ses-filter-note">Đang xem mẫu · Lũy kế</span>' +
+        "</div>" +
+        sections +
+        '<section class="ses-sec" id="grdp">' +
+          "<h2>" + esc(g.title || "GRDP") + "</h2>" +
+          '<p class="asof">' + esc(g.period || "") + " · " + esc(g.year || "") + " · sơ đồ mẫu, không phải bản đồ nền</p>" +
+          '<div class="ses-grdp">' +
+            '<div class="table-wrap"><table><thead><tr><th>#</th><th>Địa phương</th><th>GRDP mẫu</th><th>Tăng trưởng mẫu</th></tr></thead><tbody>' +
+              rows +
+            "</tbody></table></div>" +
+            '<div class="ses-map" aria-hidden="true"><svg viewBox="0 0 160 280"><path fill="#86efac" d="M78 8l28 24 8 36-18 28 16 40-6 48 18 36-22 42-28 28-18-24-8-40 14-36-16-44 6-42-20-28z"/><circle cx="118" cy="78" r="4" fill="#f87171"/><circle cx="108" cy="150" r="4" fill="#fb923c"/><circle cx="96" cy="210" r="4" fill="#86efac"/></svg><p>Sơ đồ mẫu</p></div>' +
+          "</div>" +
+        "</section>" +
+      "</main>"
+    );
   }
 
   function onDocClick() {
@@ -620,6 +729,7 @@
       return;
     }
     if (found.name === "shell") root.innerHTML = pageShell();
+    else if (found.name === "ses" && MODS.ses && MODS.ses.sections) root.innerHTML = pageSes();
     else if (found.layout === "mae") root.innerHTML = pageMae(found);
     else if (MODS[found.name]) root.innerHTML = pageModule(found.name);
     else root.innerHTML = pageClosed(found);
