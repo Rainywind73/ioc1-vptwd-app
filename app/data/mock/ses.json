@@ -4,7 +4,10 @@
   "hash": "#/socio-economic",
   "h1": "Báo cáo tình hình kinh tế - xã hội",
   "disclaimer": "DỮ LIỆU MẪU — bố cục theo ảnh, số không chép từ ảnh",
-  "filters": { "period": "Tháng", "year": "2026" },
+  "filters": {
+    "period": "Tháng",
+    "year": "2026"
+  },
   "sections": [
     {
       "no": "1",
@@ -15,28 +18,68 @@
           "name": "Tổng sản phẩm trong nước (GDP)",
           "value": "+7,25%",
           "unit": "so cùng kỳ",
-          "notes": ["khớp ô trang chủ", "Q2/2026"],
+          "notes": [
+            "khớp ô trang chủ",
+            "Q2/2026"
+          ],
           "chart": "bar",
-          "series": [48, 72, 60, 55],
+          "series": [
+            48,
+            72,
+            60,
+            55
+          ],
           "link": "Xem GRDP các địa phương"
         },
         {
           "name": "Chỉ số giá tiêu dùng (CPI)",
           "value": "+3,10%",
           "unit": "so cùng kỳ",
-          "notes": ["ước mẫu"],
+          "notes": [
+            "ước mẫu"
+          ],
           "chart": "line",
-          "series": [30, 34, 40, 36, 33, 38],
-          "seriesB": [28, 30, 32, 31, 29, 33]
+          "series": [
+            30,
+            34,
+            40,
+            36,
+            33,
+            38
+          ],
+          "seriesB": [
+            28,
+            30,
+            32,
+            31,
+            29,
+            33
+          ]
         },
         {
           "name": "Chỉ số sản xuất công nghiệp (IIP)",
           "value": "+6,70%",
           "unit": "so cùng kỳ",
-          "notes": ["ước mẫu"],
+          "notes": [
+            "ước mẫu"
+          ],
           "chart": "line",
-          "series": [40, 55, 48, 62, 58, 66],
-          "seriesB": [36, 42, 40, 44, 41, 45]
+          "series": [
+            40,
+            55,
+            48,
+            62,
+            58,
+            66
+          ],
+          "seriesB": [
+            36,
+            42,
+            40,
+            44,
+            41,
+            45
+          ]
         }
       ]
     },
@@ -49,17 +92,35 @@
           "name": "Thu ngân sách nhà nước",
           "value": "120.000",
           "unit": "tỷ đồng mẫu",
-          "notes": ["+5,00% so cùng kỳ"],
+          "notes": [
+            "+5,00% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [70, 50, 46, 48, 52, 49]
+          "series": [
+            70,
+            50,
+            46,
+            48,
+            52,
+            49
+          ]
         },
         {
           "name": "Chi ngân sách nhà nước",
           "value": "180.000",
           "unit": "tỷ đồng mẫu",
-          "notes": ["+4,00% so cùng kỳ"],
+          "notes": [
+            "+4,00% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [30, 34, 40, 55, 48, 52]
+          "series": [
+            30,
+            34,
+            40,
+            55,
+            48,
+            52
+          ]
         }
       ]
     },
@@ -72,17 +133,35 @@
           "name": "Vốn đầu tư thực hiện từ nguồn NSNN",
           "value": "80.000",
           "unit": "tỷ đồng mẫu",
-          "notes": ["+6,00% so cùng kỳ"],
+          "notes": [
+            "+6,00% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [20, 28, 36, 44, 52, 60]
+          "series": [
+            20,
+            28,
+            36,
+            44,
+            52,
+            60
+          ]
         },
         {
           "name": "Vốn đầu tư trực tiếp nước ngoài",
           "value": "1,20",
           "unit": "tỷ USD mẫu",
-          "notes": ["+5,50% so cùng kỳ"],
+          "notes": [
+            "+5,50% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [24, 40, 30, 48, 36, 28]
+          "series": [
+            24,
+            40,
+            30,
+            48,
+            36,
+            28
+          ]
         }
       ]
     },
@@ -95,17 +174,35 @@
           "name": "Xuất khẩu hàng hóa",
           "value": "40,0",
           "unit": "tỷ USD mẫu",
-          "notes": ["+4,20% so cùng kỳ"],
+          "notes": [
+            "+4,20% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [32, 30, 38, 42, 46, 50]
+          "series": [
+            32,
+            30,
+            38,
+            42,
+            46,
+            50
+          ]
         },
         {
           "name": "Nhập khẩu hàng hóa",
           "value": "42,0",
           "unit": "tỷ USD mẫu",
-          "notes": ["+3,80% so cùng kỳ"],
+          "notes": [
+            "+3,80% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [36, 34, 44, 48, 52, 49]
+          "series": [
+            36,
+            34,
+            44,
+            48,
+            52,
+            49
+          ]
         }
       ]
     },
@@ -118,9 +215,18 @@
           "name": "Giải ngân vốn đầu tư công",
           "value": "60.000",
           "unit": "tỷ đồng mẫu",
-          "notes": ["+5,10% so cùng kỳ"],
+          "notes": [
+            "+5,10% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [22, 26, 40, 58, 36, 44]
+          "series": [
+            22,
+            26,
+            40,
+            58,
+            36,
+            44
+          ]
         }
       ]
     },
@@ -133,9 +239,18 @@
           "name": "Vốn doanh nghiệp đăng ký mới",
           "value": "150.000",
           "unit": "tỷ đồng mẫu",
-          "notes": ["+4,40% so cùng kỳ"],
+          "notes": [
+            "+4,40% so cùng kỳ"
+          ],
           "chart": "line",
-          "series": [28, 36, 42, 55, 40, 48]
+          "series": [
+            28,
+            36,
+            42,
+            55,
+            40,
+            48
+          ]
         }
       ]
     }
@@ -145,12 +260,211 @@
     "period": "Quý 2",
     "year": "2026",
     "rows": [
-      { "name": "Hà Nội", "value": "80.000", "delta": "+6,0%" },
-      { "name": "Hải Phòng", "value": "30.000", "delta": "+5,5%" },
-      { "name": "Đà Nẵng", "value": "20.000", "delta": "+5,0%" },
-      { "name": "TP. Hồ Chí Minh", "value": "90.000", "delta": "+6,5%" },
-      { "name": "Cần Thơ", "value": "15.000", "delta": "+4,5%" },
-      { "name": "Nghệ An", "value": "18.000", "delta": "+4,8%" }
-    ]
+      {
+        "ma": "01",
+        "name": "Hà Nội",
+        "value": "11.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "04",
+        "name": "Cao Bằng",
+        "value": "14.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "08",
+        "name": "Tuyên Quang",
+        "value": "18.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "11",
+        "name": "Điện Biên",
+        "value": "21.000",
+        "delta": "+11,0%"
+      },
+      {
+        "ma": "12",
+        "name": "Lai Châu",
+        "value": "22.000",
+        "delta": "+5,0%"
+      },
+      {
+        "ma": "14",
+        "name": "Sơn La",
+        "value": "24.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "15",
+        "name": "Lào Cai",
+        "value": "25.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "19",
+        "name": "Thái Nguyên",
+        "value": "29.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "20",
+        "name": "Lạng Sơn",
+        "value": "30.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "22",
+        "name": "Quảng Ninh",
+        "value": "32.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "24",
+        "name": "Bắc Ninh",
+        "value": "34.000",
+        "delta": "+5,0%"
+      },
+      {
+        "ma": "25",
+        "name": "Phú Thọ",
+        "value": "35.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "31",
+        "name": "Hải Phòng",
+        "value": "41.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "33",
+        "name": "Hưng Yên",
+        "value": "43.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "37",
+        "name": "Ninh Bình",
+        "value": "47.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "38",
+        "name": "Thanh Hoá",
+        "value": "48.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "40",
+        "name": "Nghệ An",
+        "value": "50.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "42",
+        "name": "Hà Tĩnh",
+        "value": "52.000",
+        "delta": "+5,0%"
+      },
+      {
+        "ma": "44",
+        "name": "Quảng Trị",
+        "value": "54.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "46",
+        "name": "Huế",
+        "value": "56.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "48",
+        "name": "Đà Nẵng",
+        "value": "58.000",
+        "delta": "+5,0%"
+      },
+      {
+        "ma": "51",
+        "name": "Quảng Ngãi",
+        "value": "61.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "52",
+        "name": "Gia Lai",
+        "value": "62.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "56",
+        "name": "Khánh Hoà",
+        "value": "66.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "66",
+        "name": "Đắk Lắk",
+        "value": "76.000",
+        "delta": "+5,0%"
+      },
+      {
+        "ma": "68",
+        "name": "Lâm Đồng",
+        "value": "78.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "75",
+        "name": "Đồng Nai",
+        "value": "85.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "79",
+        "name": "Hồ Chí Minh",
+        "value": "89.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "80",
+        "name": "Tây Ninh",
+        "value": "90.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "82",
+        "name": "Đồng Tháp",
+        "value": "92.000",
+        "delta": "+9,5%"
+      },
+      {
+        "ma": "86",
+        "name": "Vĩnh Long",
+        "value": "96.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "91",
+        "name": "An Giang",
+        "value": "101.000",
+        "delta": "+6,5%"
+      },
+      {
+        "ma": "92",
+        "name": "Cần Thơ",
+        "value": "102.000",
+        "delta": "+8,0%"
+      },
+      {
+        "ma": "96",
+        "name": "Cà Mau",
+        "value": "106.000",
+        "delta": "+5,0%"
+      }
+    ],
+    "note": "34 tỉnh, số mẫu. Ranh giới mở, không phải nền Viettel."
   }
 }

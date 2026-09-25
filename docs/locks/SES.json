@@ -2,19 +2,20 @@
   "code": "SES",
   "hash": "#/socio-economic",
   "title": "Báo cáo tình hình kinh tế - xã hội",
-  "shippedAt": "2026-09-25T09:19:00Z",
-  "base": "3e117a2b973a84d22ba85577ee26db39fa557c48",
+  "shippedAt": "2026-09-25T09:45:00Z",
+  "base": "f52c5aadcbfff8155377b861570a6eeead84d73c",
   "surface": [
-    "11 thẻ trong 6 nhóm",
-    "GDP mẫu +7,25%",
-    "khối GRDP: bảng địa phương và sơ đồ mẫu"
+    "11 thẻ",
+    "bản đồ 34 tỉnh, ranh giới mở",
+    "số GRDP mẫu, không phải Viettel Maps"
   ],
   "files": {
-    "app/index.html": "57000164e6fdcca8abdb6bbb470604ed3246d8b8393eac8da560a4387899eae6",
-    "app/css/app.css": "6715f3fd2ffde931c9a2e323af1d20c5b637ce43bd7623016cdc13d7f4322951",
-    "app/js/app.js": "507e76f65a98d4a8606cccb80acd75c2a82ae9f4609fee6ddf3b988709924cb7",
+    "app/index.html": "5938096d9f194f3b0eadd5dfaff30a7a596c359b94d34175052abefad8c7f83c",
+    "app/css/app.css": "3238bb555c2ecdad7778e1a6694324b30f4e570e63e91b13ab90dd69dbcd82f5",
+    "app/js/app.js": "0c372403867dcce76eda94774f466e80605fbfb88aff3243a1d3990aeb7aee6a",
     "app/js/router.js": "234d75da2369e4fbf9d673c40616da1a639e955d9ba466928d56ac1837baf72c",
     "app/data/mock/boot.json": "ee7e369518668084ebd706841fb8375926b8c933a800c5036b6655910021b689",
-    "app/data/mock/ses.json": "cdbc8656653c749a4fa428729d62e674811385f697b19c10f93ecb3bdbaf7288"
+    "app/data/mock/ses.json": "8f5afdcdc4c7717326f865e5fe7ce977cda339dab44cc614e01f0d43c4076245",
+    "app/data/geo/provinces.json": "9f70c0477ad634baf34063929d671d6b79b2e8b4c0aebd003d1462b7e43c0ac9"
   }
 }

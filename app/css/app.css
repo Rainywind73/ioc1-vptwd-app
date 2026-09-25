@@ -934,7 +934,17 @@ html[data-theme="dark"] .chips span {
   place-items: center;
   text-align: center;
 }
-.ses-map svg { width: 140px; height: 240px; }
+.ses-map svg { width: 100%; height: auto; max-height: 420px; }
+.ses-map .legend i {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  margin: 0 4px 0 8px;
+}
+.ses-map .legend i.hi { background: #ef4444; }
+.ses-map .legend i.mid { background: #fb923c; }
+.ses-map .legend i.lo { background: #4ade80; }
 .ses-map p { margin: 0; font-size: 12px; color: #64748b; }
 html[data-theme="dark"] .ses-card,
 html[data-theme="dark"] .ses-map,

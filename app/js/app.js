@@ -11,6 +11,7 @@
   var DATA = null;
   var HOME = null;
   var MODS = {};
+  var GEO = null;
   var pop = null;
   var docBound = false;
   function closePop() {
@@ -701,15 +702,79 @@
         sections +
         '<section class="ses-sec" id="grdp">' +
           "<h2>" + esc(g.title || "GRDP") + "</h2>" +
-          '<p class="asof">' + esc(g.period || "") + " · " + esc(g.year || "") + " · sơ đồ mẫu, không phải bản đồ nền</p>" +
+          '<p class="asof">' + esc(g.period || "") + " · " + esc(g.year || "") + " · " + esc(g.note || "ranh giới mở, không phải Viettel") + "</p>" +
           '<div class="ses-grdp">' +
             '<div class="table-wrap"><table><thead><tr><th>#</th><th>Địa phương</th><th>GRDP mẫu</th><th>Tăng trưởng mẫu</th></tr></thead><tbody>' +
               rows +
             "</tbody></table></div>" +
-            '<div class="ses-map" aria-hidden="true"><svg viewBox="0 0 160 280"><path fill="#86efac" d="M78 8l28 24 8 36-18 28 16 40-6 48 18 36-22 42-28 28-18-24-8-40 14-36-16-44 6-42-20-28z"/><circle cx="118" cy="78" r="4" fill="#f87171"/><circle cx="108" cy="150" r="4" fill="#fb923c"/><circle cx="96" cy="210" r="4" fill="#86efac"/></svg><p>Sơ đồ mẫu</p></div>' +
+            sesMap(g.rows) +
           "</div>" +
         "</section>" +
       "</main>"
+    );
+  }
+
+  function sesFill(delta) {
+    if (!delta) return "#e5e7eb";
+    var n = Number(String(delta).replace("%", "").replace(/\s/g, "").replace(",", "."));
+    if (isNaN(n)) return "#e5e7eb";
+    if (n > 10) return "#ef4444";
+    if (n >= 8) return "#fb923c";
+    return "#4ade80";
+  }
+
+  function sesMap(rows) {
+    if (!GEO || !GEO.features || !GEO.features.length) {
+      return '<div class="ses-map"><p>Chưa có ranh giới.</p></div>';
+    }
+    var by = {};
+    (rows || []).forEach(function (row) { if (row.ma) by[row.ma] = row; });
+    var minX = 180, maxX = -180, minY = 90, maxY = -90;
+    function walk(coords) {
+      if (typeof coords[0] === "number") {
+        minX = Math.min(minX, coords[0]);
+        maxX = Math.max(maxX, coords[0]);
+        minY = Math.min(minY, coords[1]);
+        maxY = Math.max(maxY, coords[1]);
+        return;
+      }
+      coords.forEach(walk);
+    }
+    GEO.features.forEach(function (f) { walk(f.geometry.coordinates); });
+    var w = 220, h = 360, pad = 8;
+    function project(lon, lat) {
+      return [
+        pad + (lon - minX) / (maxX - minX || 1) * (w - pad * 2),
+        pad + (maxY - lat) / (maxY - minY || 1) * (h - pad * 2)
+      ];
+    }
+    function ringsOf(geom) {
+      if (!geom) return [];
+      if (geom.type === "Polygon") return geom.coordinates;
+      if (geom.type === "MultiPolygon") {
+        var all = [];
+        geom.coordinates.forEach(function (poly) { poly.forEach(function (ring) { all.push(ring); }); });
+        return all;
+      }
+      return [];
+    }
+    var paths = GEO.features.map(function (f) {
+      var row = by[f.properties.ma];
+      var d = ringsOf(f.geometry).map(function (ring) {
+        return ring.map(function (xy, i) {
+          var p = project(xy[0], xy[1]);
+          return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1);
+        }).join("") + "Z";
+      }).join("");
+      var title = f.properties.ten + (row ? " " + row.delta : "");
+      return '<path d="' + d + '" fill="' + sesFill(row && row.delta) + '" stroke="#fff" stroke-width="0.6"><title>' + esc(title) + "</title></path>";
+    }).join("");
+    return (
+      '<div class="ses-map">' +
+        '<svg viewBox="0 0 ' + w + " " + h + '" role="img" aria-label="Ranh giới tỉnh, số mẫu">' + paths + "</svg>" +
+        '<p class="legend"><i class="hi"></i> trên 10% <i class="mid"></i> 8–10% <i class="lo"></i> dưới 8%</p>' +
+        "<p>" + esc(GEO.attribution || "") + "</p>" +
+      "</div>"
     );
   }
 
@@ -793,7 +858,13 @@
                 .catch(function () { return null; });
             })).then(function (mods) {
               mods.forEach(function (mod) { if (mod && mod.route) MODS[mod.route] = mod; });
-              return { boot: data, home: home };
+              return fetch("data/geo/provinces.json", { cache: "no-store" })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .catch(function () { return null; })
+                .then(function (geo) {
+                  GEO = geo;
+                  return { boot: data, home: home };
+                });
             });
           });
       })
