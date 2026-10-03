@@ -253,7 +253,7 @@
         "<h1>" + esc(H.h1) + "</h1>" +
         '<div class="ov-grid">' + cards + "</div>" +
       "</main>" +
-      '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>"
+      '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>'
     );
   }
 
