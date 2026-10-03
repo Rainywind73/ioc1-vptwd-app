@@ -253,7 +253,7 @@
         "<h1>" + esc(H.h1) + "</h1>" +
         '<div class="ov-grid">' + cards + "</div>" +
       "</main>" +
-      '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>'
+      '<div class="dlg-mask" id="dlg" hidden><div class="dlg" role="dialog" aria-modal="true" aria-labelledby="dlg-title"><h2 id="dlg-title"></h2><p id="dlg-body"></p><button type="button" id="dlg-close">Đóng</button></div></div>"
     );
   }
 
@@ -792,6 +792,171 @@
     );
   }
 
+
+  function pageRes() {
+    var M = MODS.res || {};
+    function fmt(n) {
+      var s = String(Math.round(Number(n) || 0));
+      return s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    var cards = [
+      ["Nghị quyết 57-NQ/TW", 1724, 45, 80, 1186, 413],
+      ["Nghị quyết 57-NQ/TW - Quyết định 204-QĐ/TW - Nhiệm vụ tháng", 233, 3, 4, 169, 57],
+      ["Nghị quyết 57-NQ/TW - Quyết định 204-QĐ/TW - Nhiệm vụ tuần", 52, 6, 10, 24, 12],
+      ["Nghị quyết 59-NQ/TW", 115, 2, 18, 17, 78],
+      ["Nghị quyết 66-NQ/TW", 130, 11, 34, 43, 42],
+      ["Nghị quyết 68-NQ/TW", 120, 10, 35, 74, 1],
+      ["Nghị quyết 70-NQ/TW", 118, 14, 70, 30, 4],
+      ["Nghị quyết 71-NQ/TW", 73, 0, 32, 40, 1],
+      ["Nghị quyết 72-NQ/TW", 51, 0, 18, 9, 24],
+      ["Nghị quyết 79-NQ/TW", 107, 2, 35, 3, 67],
+      ["Nghị quyết 80-NQ/TW", 136, 15, 32, 10, 79],
+      ["Nghị quyết ĐH XIV", 275, 5, 185, 42, 43]
+    ];
+    var kpi = cards.map(function (c) {
+      return (
+        '<article class="res-kpi">' +
+          '<h3><span class="res-doc" aria-hidden="true"></span>' + esc(c[0]) + "</h3>" +
+          '<p class="res-kpi-total"><span>Tổng số nhiệm vụ</span><b>' + esc(fmt(c[1])) + "</b></p>" +
+          '<p class="res-kpi-row"><span><i class="res-dot q"></i>Quá hạn</span><b class="q">' + esc(fmt(c[2])) + "</b></p>" +
+          '<p class="res-kpi-row"><span><i class="res-dot d"></i>Đang thực hiện</span><b class="d">' + esc(fmt(c[3])) + "</b></p>" +
+          '<p class="res-kpi-row"><span><i class="res-dot x"></i>Đã hoàn thành</span><b class="x">' + esc(fmt(c[4])) + "</b></p>" +
+          '<p class="res-kpi-row"><span><i class="res-dot r"></i>Thường xuyên</span><b class="r">' + esc(fmt(c[5])) + "</b></p>" +
+        "</article>"
+      );
+    }).join("");
+    var alerts = [
+      ["Quỹ phát triển doanh nghiệp nhỏ và vừa có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"],
+      ["Vụ Ngân sách nhà nước có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "50%"],
+      ["Viện Chiến lược và Chính sách kinh tế - tài chính có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"],
+      ["Ban Dân tộc có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"]
+    ];
+    var alertHtml = alerts.map(function (a) {
+      return (
+        '<article class="res-alert">' +
+          "<p>" + esc(a[0]) + "</p>" +
+          '<strong>' + esc(a[1]) + "</strong>" +
+          "<small>(ngưỡng 3%)</small>" +
+        "</article>"
+      );
+    }).join("");
+    var units = [
+      ["Bộ Khoa học và Công nghệ", 22, 4, 0, 0],
+      ["An Giang", 21, 4, 0, 0],
+      ["Bắc Ninh", 21, 4, 0, 0],
+      ["Cà Mau", 21, 4, 0, 0],
+      ["Đắk Lắk", 21, 4, 0, 0],
+      ["Đồng Nai", 21, 4, 0, 0],
+      ["Đồng Tháp", 21, 4, 0, 0],
+      ["Gia Lai", 21, 4, 0, 0],
+      ["Hưng Yên", 21, 4, 0, 0],
+      ["Khánh Hòa", 21, 4, 0, 0],
+      ["Lâm Đồng", 21, 4, 0, 0],
+      ["Lào Cai", 21, 4, 0, 0]
+    ];
+    var axisMax = 30;
+    var bars = units.map(function (u) {
+      function w(n) {
+        return (Math.max(0, n) / axisMax * 100).toFixed(2) + "%";
+      }
+      function seg(cls, n) {
+        var label = n > 0 && (n / axisMax) >= 0.08 ? String(n) : "";
+        return '<i class="' + cls + '" style="width:' + w(n) + '">' + label + "</i>";
+      }
+      return (
+        '<div class="res-unit">' +
+          "<span>" + esc(u[0]) + "</span>" +
+          '<span class="res-stack" role="img" aria-label="' + esc(u[0] + ": hoàn thành " + u[1] + ", đang " + u[2] + ", chậm " + u[3] + ", thường xuyên " + u[4]) + '">' +
+            seg("done", u[1]) + seg("doing", u[2]) + seg("late", u[3]) + seg("reg", u[4]) +
+          "</span>" +
+        "</div>"
+      );
+    }).join("");
+    var ticks = [0, 5, 10, 15, 20, 25, 30].map(function (n) {
+      return "<i>" + n + "</i>";
+    }).join("");
+    var slices = [
+      { n: 729, label: "Nhóm 5 - Đẩy mạnh chuyển đổi số,...", pct: "72,1%", color: "#f59e0b" },
+      { n: 156, label: "Nhóm 4 - Phát triển, trọng dụng nhân lực chất lượng cao,...", pct: "15,4%", color: "#14b8a6" },
+      { n: 126, label: "Nhóm 2 - Khẩn trương, quyết liệt,...", pct: "12,5%", color: "#2563eb" }
+    ];
+    var totalNv = 1011;
+    var r = 46;
+    var circ = 2 * Math.PI * r;
+    var acc = 0;
+    var arcs = slices.map(function (s) {
+      var len = s.n / totalNv * circ;
+      var el =
+        '<circle cx="70" cy="70" r="46" fill="none" stroke="' + s.color + '" stroke-width="16" stroke-linecap="butt" ' +
+        'stroke-dasharray="' + len.toFixed(3) + " " + (circ - len).toFixed(3) + '" ' +
+        'stroke-dashoffset="' + (-acc).toFixed(3) + '"/>';
+      acc += len;
+      return el;
+    }).join("");
+    var legend = slices.map(function (s) {
+      return (
+        '<li><i style="background:' + s.color + '"></i><span>' + esc(s.label) + "</span><b>" +
+        esc(fmt(s.n)) + " (" + esc(s.pct) + ")</b></li>"
+      );
+    }).join("");
+    var donut =
+      '<div class="res-donut-wrap">' +
+        '<svg class="res-donut" viewBox="0 0 140 140" role="img" aria-label="Biểu đồ nhóm nhiệm vụ, 1.011 tổng nhiệm vụ">' +
+          '<g transform="rotate(-90 70 70)">' + arcs + "</g>" +
+          '<text x="70" y="66" text-anchor="middle" font-size="18" font-weight="800" fill="#111827" font-family="Be Vietnam Pro, sans-serif">1.011</text>' +
+          '<text x="70" y="84" text-anchor="middle" font-size="11" fill="#6b7280" font-family="Be Vietnam Pro, sans-serif">Tổng NV</text>' +
+        "</svg>" +
+        '<ul class="res-donut-legend">' + legend + "</ul>" +
+      "</div>";
+    var disclaimer =
+      "DỮ LIỆU MẪU clone theo audit IOC 02/10/2026 (khoảng 01/10–02/10). Không gọi API Lowcoder.";
+    return (
+      header(M.hash || "#/monitoring-resolution") +
+      '<main class="modpage res-dash">' +
+        '<div class="res-title-row">' +
+          "<h1>TỔNG QUAN KẾT QUẢ THỰC HIỆN NGHỊ QUYẾT, CHỈ THỊ, KẾT LUẬN CỦA TRUNG ƯƠNG</h1>" +
+          '<div class="res-date" aria-label="Khoảng ngày">01/10/2026 - 02/10/2026</div>' +
+        "</div>" +
+        '<section class="res-kpi-grid" aria-label="Tổng quan theo nghị quyết">' + kpi + "</section>" +
+        '<section class="res-alerts" aria-label="Cảnh báo nổi bật">' +
+          '<div class="res-alerts-title"><span class="res-bell" aria-hidden="true"></span><strong>CẢNH BÁO NỔI BẬT</strong></div>' +
+          '<div class="res-alert-cards">' + alertHtml + "</div>" +
+          '<span class="res-alert-all">Xem tất cả cảnh báo →</span>' +
+        "</section>" +
+        '<div class="res-filters">' +
+          '<div class="res-field"><span>Chọn nghị quyết</span><div class="res-select" role="textbox" aria-readonly="true">Nghị quyết 57-NQ/TW</div></div>' +
+          '<div class="res-field"><span>Nhóm nhiệm vụ</span><div class="res-select" role="textbox" aria-readonly="true">Nghị quyết 57-NQ/TW - Kế hoạch 02</div></div>' +
+        "</div>" +
+        '<div class="res-split">' +
+          '<div class="res-col">' +
+            '<section class="res-panel">' +
+              "<h2>Biểu đồ tiến độ theo đơn vị</h2>" +
+              '<div class="res-units">' + bars +
+                '<div class="res-axis" aria-hidden="true"><span></span><span class="res-axis-ticks">' + ticks + "</span></div>" +
+              "</div>" +
+              '<p class="res-legend"><i class="done"></i>Đã hoàn thành<i class="doing"></i>Đang thực hiện<i class="late"></i>Chậm tiến độ<i class="reg"></i>Thường xuyên</p>' +
+            "</section>" +
+            '<section class="res-panel">' +
+              "<h2>Biểu đồ theo nhóm nhiệm vụ</h2>" +
+              donut +
+            "</section>" +
+          "</div>" +
+          '<section class="res-panel res-map-panel">' +
+            "<h2>Chi tiết theo đơn vị</h2>" +
+            '<div class="res-field res-field-inline"><span>Chỉ tiêu</span><div class="res-select" role="textbox" aria-readonly="true">Tỷ lệ hoàn thành nhiệm vụ theo từng nghị quyết</div></div>' +
+            '<div class="res-map">' +
+              '<p class="res-map-legend"><i class="lo"></i><50% <i class="mid"></i>50–80% <i class="hi"></i>≥80% <i class="na"></i>Không có dữ liệu</p>' +
+              "<svg class=\"res-vn\" viewBox=\"0 0 220 300\" role=\"img\" aria-label=\"Bản đồ minh họa Việt Nam, không gọi Viettel Maps\"><rect width=\"220\" height=\"300\" fill=\"#e7f3fb\"/><path fill=\"#fb923c\" stroke=\"#fff\" stroke-width=\"1.2\" d=\"M108 16c8 10 18 14 16 28-2 12 8 16 6 30-2 16 10 22 4 38-6 14 8 24 2 40-8 18 6 28-2 44-6 12 4 22-4 34-8 10-2 22-14 26-10 4-18-6-22-16-6-12 2-24-8-32-8-8-16-6-22-16-4-8-14-4-16-16 0-10-8-16-6-26 2-12-6-20-2-32 4-14-2-24 6-34 6-8 16-12 22-24 4-8 12-10 20-10z\"/><path fill=\"#22c55e\" d=\"M96 70h18v14H96zM120 110h16v12h-16zM88 150h20v12H88zM110 190h14v16h-14z\"/><text x=\"110\" y=\"286\" text-anchor=\"middle\" font-size=\"11\" fill=\"#64748b\" font-family=\"Be Vietnam Pro, sans-serif\">Việt Nam</text></svg>" +
+              '<div class="res-zoom" aria-hidden="true"><span>+</span><span>−</span></div>' +
+            "</div>" +
+            '<p class="res-map-cap">Bản đồ minh họa (clone) — không gọi Viettel Maps</p>' +
+          "</section>" +
+        "</div>" +
+        '<p class="res-disclaimer">' + esc(disclaimer) + "</p>" +
+      "</main>"
+    );
+  }
+
   function onDocClick() {
     closePop();
   }
@@ -808,6 +973,7 @@
       return;
     }
     if (found.name === "shell") root.innerHTML = pageShell();
+    else if (found.name === "res") root.innerHTML = pageRes();
     else if (found.name === "ses" && MODS.ses && MODS.ses.sections) root.innerHTML = pageSes();
     else if (found.layout === "mae") root.innerHTML = pageMae(found);
     else if (MODS[found.name]) root.innerHTML = pageModule(found.name);
@@ -820,8 +986,11 @@
       routes: [
         { path: "/login", name: "login" },
         { path: "/", name: "shell" },
+        { path: "/btctw", name: "btctw" },
         { path: "/socio-economic", name: "ses" },
         { path: "/operation-management", name: "ops" },
+        { path: "/hundred-day-plan/political", name: "hdp-political" },
+        { path: "/hundred-day-plan/party", name: "hdp-party" },
         { path: "/hundred-day-plan", name: "hdp" },
         { path: "/monitoring-resolution", name: "res" },
         { path: "/party-building", name: "party" },
@@ -834,11 +1003,31 @@
             { path: "/linked/mae-info", name: "mae-link" }
           ]
         },
+        { path: "/linked-systems/mae-info", name: "mae-info" },
+        { path: "/linked-systems/vnlis", name: "vnlis" },
         { path: "/system-monitoring", name: "mon" },
-        { path: "/admin/:slug", name: "closed" },
-        { path: "/profile/profile-update", name: "closed" },
-        { path: "/login-history", name: "closed" },
-        { path: "/assessment-config", name: "closed" }
+        { path: "/category/administrative-unit", name: "admin-unit" },
+        { path: "/category/department", name: "department" },
+        { path: "/user-permission/user", name: "user" },
+        { path: "/user-permission/feature", name: "feature" },
+        { path: "/user-permission/feature-group", name: "feature-group" },
+        { path: "/user-permission/role", name: "role" },
+        { path: "/profile/profile-update", name: "profile-update" },
+        { path: "/login-history", name: "login-history" },
+        { path: "/system-management/assessment-config", name: "assessment-config" },
+        { path: "/operation/button", name: "button" },
+        { path: "/operation/category", name: "category" },
+        { path: "/operation/priority-level", name: "priority-level" },
+        { path: "/operation/status", name: "status" },
+        { path: "/operation/alarm", name: "alarm" },
+        { path: "/operation/user-groups", name: "user-groups" },
+        { path: "/operation/process-definition", name: "process-definition" },
+        { path: "/operation/process-runtime", name: "process-runtime" },
+        { path: "/operation/process-group", name: "process-group" },
+        { path: "/operation/process-task", name: "process-task" },
+        { path: "/report/kpi-specs", name: "kpi-specs" },
+        { path: "/report/kpi", name: "kpi" },
+        { path: "/admin/:slug", name: "closed" }
       ],
       before: function (found) {
         var authed = !!session();
@@ -865,7 +1054,15 @@
         return fetch("data/mock/home.json", { cache: "no-store" })
           .then(function (r) { return r.ok ? r.json() : null; })
           .then(function (home) {
-            var names = ["ses", "party", "res", "ops", "hdp", "mae", "mon"];
+            var names = [
+              "ses", "party", "res", "ops", "hdp", "mae", "mon",
+              "btctw", "hdp-political", "hdp-party", "mae-info", "vnlis",
+              "administrative-unit", "department", "user", "feature", "feature-group",
+              "role", "profile-update", "login-history", "assessment-config",
+              "button", "category", "priority-level", "status", "alarm", "user-groups",
+              "process-definition", "process-runtime", "process-group", "process-task",
+              "kpi-specs", "kpi"
+            ];
             return Promise.all(names.map(function (name) {
               return fetch("data/mock/" + name + ".json", { cache: "no-store" })
                 .then(function (r) { return r.ok ? r.json() : null; })
