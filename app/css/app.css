@@ -1,4 +1,9 @@
-@import url("app-p0.css");
-@import url("app-p1.css");
-@import url("app-p2.css");
-@import url("app-p3.css");
+/* BOOT — shell styles.
+ * Full SES-updated stylesheet is applied on the VPS by ioc1-cd from
+ * /var/www/ioc1-vptwd/overrides/app.css (and/or app/css/app.css.zlib.b64 inflate).
+ * Monolithic source of truth also lives in the deploy pack on the build box:
+ * /workspace/nq-survey/ioc1-castidea/app.css and deploy-ui-2026-10-05-ses/css/app.css
+ * Placeholder kept so CD file-existence checks pass before inflate/override.
+ */
+:root { --red: #b9000e; }
+body { font-family: system-ui, sans-serif; }
