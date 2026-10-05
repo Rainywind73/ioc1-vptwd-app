@@ -800,9 +800,9 @@
       return s.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
     var cards = [
-      ["Nghị quyết 57-NQ/TW", 1724, 45, 80, 1186, 413],
+      ["Nghị quyết 57-NQ/TW", 1724, 44, 80, 1187, 413],
       ["Nghị quyết 57-NQ/TW - Quyết định 204-QĐ/TW - Nhiệm vụ tháng", 233, 3, 4, 169, 57],
-      ["Nghị quyết 57-NQ/TW - Quyết định 204-QĐ/TW - Nhiệm vụ tuần", 52, 6, 10, 24, 12],
+      ["Nghị quyết 57-NQ/TW - Quyết định 204-QĐ/TW - Nhiệm vụ tuần", 84, 14, 17, 25, 28],
       ["Nghị quyết 59-NQ/TW", 115, 2, 18, 17, 78],
       ["Nghị quyết 66-NQ/TW", 130, 11, 34, 43, 42],
       ["Nghị quyết 68-NQ/TW", 120, 10, 35, 74, 1],
@@ -829,7 +829,7 @@
       ["Quỹ phát triển doanh nghiệp nhỏ và vừa có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"],
       ["Vụ Ngân sách nhà nước có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "50%"],
       ["Viện Chiến lược và Chính sách kinh tế - tài chính có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"],
-      ["Ban Dân tộc có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"]
+      ["Ban Bí thư có tỷ lệ nhiệm vụ quá hạn theo từng nghị quyết vượt ngưỡng", "100%"]
     ];
     var alertHtml = alerts.map(function (a) {
       return (
@@ -909,13 +909,13 @@
         '<ul class="res-donut-legend">' + legend + "</ul>" +
       "</div>";
     var disclaimer =
-      "DỮ LIỆU MẪU clone theo audit IOC 02/10/2026 (khoảng 01/10–02/10). Không gọi API Lowcoder.";
+      "DỮ LIỆU MẪU clone theo audit IOC 05/10/2026 (khoảng 01/10–05/10). Không gọi API Lowcoder.";
     return (
       header(M.hash || "#/monitoring-resolution") +
       '<main class="modpage res-dash">' +
         '<div class="res-title-row">' +
           "<h1>TỔNG QUAN KẾT QUẢ THỰC HIỆN NGHỊ QUYẾT, CHỈ THỊ, KẾT LUẬN CỦA TRUNG ƯƠNG</h1>" +
-          '<div class="res-date" aria-label="Khoảng ngày">01/10/2026 - 02/10/2026</div>' +
+          '<div class="res-date" aria-label="Khoảng ngày">01/10/2026 - 05/10/2026</div>' +
         "</div>" +
         '<section class="res-kpi-grid" aria-label="Tổng quan theo nghị quyết">' + kpi + "</section>" +
         '<section class="res-alerts" aria-label="Cảnh báo nổi bật">' +
@@ -949,7 +949,7 @@
               "<svg class=\"res-vn\" viewBox=\"0 0 220 300\" role=\"img\" aria-label=\"Bản đồ minh họa Việt Nam, không gọi Viettel Maps\"><rect width=\"220\" height=\"300\" fill=\"#e7f3fb\"/><path fill=\"#fb923c\" stroke=\"#fff\" stroke-width=\"1.2\" d=\"M108 16c8 10 18 14 16 28-2 12 8 16 6 30-2 16 10 22 4 38-6 14 8 24 2 40-8 18 6 28-2 44-6 12 4 22-4 34-8 10-2 22-14 26-10 4-18-6-22-16-6-12 2-24-8-32-8-8-16-6-22-16-4-8-14-4-16-16 0-10-8-16-6-26 2-12-6-20-2-32 4-14-2-24 6-34 6-8 16-12 22-24 4-8 12-10 20-10z\"/><path fill=\"#22c55e\" d=\"M96 70h18v14H96zM120 110h16v12h-16zM88 150h20v12H88zM110 190h14v16h-14z\"/><text x=\"110\" y=\"286\" text-anchor=\"middle\" font-size=\"11\" fill=\"#64748b\" font-family=\"Be Vietnam Pro, sans-serif\">Việt Nam</text></svg>" +
               '<div class="res-zoom" aria-hidden="true"><span>+</span><span>−</span></div>' +
             "</div>" +
-            '<p class="res-map-cap">Bản đồ minh họa (clone) — không gọi Viettel Maps</p>' +
+            '<p class="res-map-cap">Bản đồ minh họa (sơ đồ clone) — IOC gốc dùng Viettel Maps (vtmap-gl-js v4.0.0); bản clone không gọi Viettel Maps</p>' +
           "</section>" +
         "</div>" +
         '<p class="res-disclaimer">' + esc(disclaimer) + "</p>" +
