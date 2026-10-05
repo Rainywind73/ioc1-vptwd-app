@@ -8,7 +8,7 @@ FLAG=/etc/ioc1-cd.enable
 LOG=/var/log/ioc1-cd.log
 LOCK=/var/lock/ioc1-cd.lock
 
-log() { printf '%s %s\n' "$(date -Is)" "$*" | tee -a "$LOG"; }
+log() { printf "%s %s\n" "$(date -Is)" "$*" | tee -a "$LOG"; }
 
 if [[ "$(id -u)" -ne 0 ]]; then
   echo "cần root" >&2
@@ -34,9 +34,9 @@ fi
 SHA="$(git -C "$SRC" rev-parse HEAD)"
 IDX="$SRC/app/index.html"
 [[ -f "$IDX" ]] || { log "thiếu app/index.html"; exit 2; }
-grep -q 'Trung tâm điều hành giám sát thông minh VPTWD' "$IDX" || { log "title lệch"; exit 3; }
-grep -q 'BẢN NGHIÊN CỨU KIẾN TRÚC' "$IDX" || { log "thiếu banner"; exit 4; }
-if grep -q 'BẢN CLONE NGHIÊN CỨU KIẾN TRÚC' "$IDX"; then
+grep -q "Trung tâm điều hành giám sát thông minh VPTWD" "$IDX" || { log "title lệch"; exit 3; }
+grep -q "BẢN NGHIÊN CỨU KIẾN TRÚC" "$IDX" || { log "thiếu banner"; exit 4; }
+if grep -q "BẢN CLONE NGHIÊN CỨU KIẾN TRÚC" "$IDX"; then
   log "còn CLONE"
   exit 5
 fi
@@ -49,8 +49,13 @@ if [[ ! -f "$FLAG" ]]; then
   exit 0
 fi
 
-rsync -a --delete --exclude '.well-known' "$SRC/app/" "$DST/"
-printf '%s\n' "$SHA" > /var/lib/ioc1-revision
+rsync -a --delete --exclude ".well-known" "$SRC/app/" "$DST/"
+# SES 05/10: restore full app.css/app.js from VPS overrides if present (GitHub MCP size limits)
+OV=/var/www/ioc1-vptwd/overrides
+if [[ -f "$OV/app.css" ]]; then cp "$OV/app.css" "$DST/css/app.css"; fi
+if [[ -f "$OV/app.js" ]]; then cp "$OV/app.js" "$DST/js/app.js"; fi
+
+printf "%s\n" "$SHA" > /var/lib/ioc1-revision
 chown -R www-data:www-data /var/www/ioc1-vptwd
 log "rsync $SHA"
 curl -sf --max-time 15 https://ioc1.castidea.vn/healthz || true
